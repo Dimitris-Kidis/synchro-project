@@ -52,11 +52,14 @@ Synchro/obj/
 ClassLibrary1/bin/
 ClassLibrary1/obj/
 
-Command/bin/
-Command/obj/
+Commands/bin/
+Commands/obj/
 
-Query/bin/
-Query/obj/
+Queries/bin/
+Queries/obj/
+
+Common/bin/
+Common/obj/
 
 *.exe
 *.dll
