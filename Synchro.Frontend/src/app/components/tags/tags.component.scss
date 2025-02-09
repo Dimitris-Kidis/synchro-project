@@ -1,0 +1,57 @@
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+
+  .tag {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    span {
+      margin-right: 5px;
+    }
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: #888;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+
+  .tag-input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .add-tag-btn {
+    background-color: #e0e0e0;
+    border: none;
+    font-size: 18px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #d0d0d0;
+    }
+  }
+}
+
+.tags-string {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}

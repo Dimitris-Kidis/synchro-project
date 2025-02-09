@@ -1,0 +1,73 @@
+@import '../../../styles/synchro-config';
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-button {
+    background: none;
+    border: 1px solid var(--language-switch-primary);
+    padding: 7px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    width: 100px;
+    border-radius: $border-radius-medium;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: var(--language-switch-primary);
+    background-color: var(--bg-c-menu);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      border-color: 1px solid var(--language-switch-primary);
+    }
+
+    .arrow-down {
+      font-size: 12px;
+    }
+  }
+
+  .dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    height: auto;
+    left: 0;
+    border-radius: $border-radius-medium;
+    background-color: var(--bg-c-menu);
+    box-shadow: var(--light-shadow);
+    border: 1px solid #ccc;
+    z-index: 100;
+    min-width: 100px;
+    opacity: 0;
+    transform: translateY(-5px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    button {
+      display: block;
+      background: none;
+      border: none;
+      padding: 8px 12px;
+      width: 100%;
+      text-align: left;
+      font-size: 14px;
+      cursor: pointer;
+      color: #555;
+
+      &:hover {
+        background-color: var(--bg-c-menu);
+        filter: brightness(90%);
+        border-radius: $border-radius-medium;
+      }
+    }
+  }
+
+  &:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}

@@ -1,0 +1,50 @@
+@import '../../../styles/synchro-config';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: var(--bg-c-footer-and-header);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+  .logo {
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: monospace;
+    color: var(--t-c-primary);
+  }
+
+  .auth-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    a {
+      font-size: 16px;
+      text-decoration: none;
+      color: var(--t-c-inactive);
+      transition: color 0.2s ease, transform 0.2s ease, border-radius 0.5s ease;
+      font-weight: 600;
+      border-radius: $border-radius-light;
+
+      &.active {
+        color: var(--t-c-secondary);
+        pointer-events: none;
+      }
+
+      &.inactive {
+        color: var(--t-c-accent);
+        border: 1px var(--t-c-accent) solid;
+        padding: 4px 8px;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        border-radius: $border-radius-heavy;
+        background-color: #7fe0d03b;
+      }
+    }
+  }
+}

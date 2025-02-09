@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="avatar">
+    <synchro-upload-image
+      [imageUrl]="group.image!"
+      (onFileUploaded)="setGroupImage($event)"
+      [documentType]="DocumentTypeEnum.GroupAvatar"
+    ></synchro-upload-image>
+  </div>
+  <div class="other">
+    <div class="personal-info">
+      <div class="input">
+        <label class="label">{{ 'GROUP.LABEL.NAME' | translate }}</label
+        >{{ group.name }}
+      </div>
+      <div class="input">
+        <label class="label">{{ 'GROUP.LABEL.CODE' | translate }}</label
+        >{{ group.code }}
+      </div>
+      <div class="input">
+        <label class="label">{{ 'GROUP.LABEL.DESCRIPTION' | translate }}</label
+        >{{ group.description }}
+      </div>
+      <div class="input">
+        <label class="label">{{ 'GROUP.LABEL.PARTICIPANTS' | translate }}</label
+        >{{ group.participantsNumber }} / {{ group.participantsLimitNumber }}
+      </div>
+    </div>
+    <div class="row">
+      <button
+        class="edit-btn"
+        (click)="edit()"
+      >
+        {{ 'COMMON.BUTTON.EDIT' | translate }}
+      </button>
+    </div>
+
+    <synchro-people></synchro-people>
+  </div>
+</div>

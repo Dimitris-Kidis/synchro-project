@@ -1,0 +1,103 @@
+<div class="request-container">
+  <div class="block">
+    @if (request.status === RequestStatusEnum.Pending) {
+    <img
+      class="status-icon"
+      src="../../../../assets/images/pending.png"
+      alt=""
+    />
+    } @else if (request.status === RequestStatusEnum.Finished && request.isApproved === true) {
+    <img
+      class="status-icon"
+      src="../../../../assets/images/apple-tick.png"
+      alt=""
+    />
+    } @else {
+    <img
+      class="status-icon"
+      src="../../../../assets/images/apple-cross.png"
+      alt=""
+    />
+    }
+  </div>
+
+  <div class="block">
+    <div class="label">{{ 'REQUESTS.COLUMN.LABEL.TYPE' | translate }}:</div>
+    <div>{{ request.type | requestTypeName }}</div>
+  </div>
+
+  <div class="block">
+    <div class="label">{{ 'REQUESTS.COLUMN.LABEL.STATUS' | translate }}:</div>
+    <div>{{ request.status | requestStatus }}</div>
+  </div>
+
+  <div class="block">
+    <div class="label">{{ 'REQUESTS.COLUMN.LABEL.DATE' | translate }}:</div>
+    <div>{{ request.createdAt | date : 'dd/MM/yyyy' }}</div>
+  </div>
+
+  <div
+    class="block"
+    *ngIf="request.text"
+  >
+    <div class="label">{{ 'REQUESTS.COLUMN.LABEL.TEXT' | translate }}:</div>
+    <div>{{ request.text }}</div>
+  </div>
+
+  <div class="block">
+    <div class="label">{{ 'REQUESTS.COLUMN.LABEL.SENDER' | translate }}:</div>
+    <div>{{ request.senderName }}</div>
+  </div>
+
+  <div
+    class="block"
+    *ngIf="request.recipientId"
+  >
+    <div class="label">{{ 'REQUESTS.COLUMN.LABEL.RECEIVER' | translate }}:</div>
+    <div>{{ request.recipientName }}</div>
+  </div>
+
+  <div
+    class="block"
+    *ngIf="request.isApproved"
+  >
+    <div class="label">{{ 'REQUESTS.COLUMN.LABEL.APPROVED' | translate }}:</div>
+    <div>{{ (request.isApproved ? 'COMMON.YES' : 'COMMON.NO') | translate }}</div>
+  </div>
+
+  <div
+    class="block"
+    *ngIf="request.isApproved"
+  >
+    <div class="label">{{ 'REQUESTS.COLUMN.LABEL.APPROVER' | translate }}:</div>
+    <div>{{ request.approver }}</div>
+  </div>
+
+  <div
+    class="block button-block"
+    *ngIf="request.senderId !== user.id && request.isApproved === null"
+  >
+    <button
+      class="approve-btn"
+      (click)="updateRequest(request.id, true, request.type)"
+    >
+      {{ 'REQUESTS.BUTTON.APPROVE' | translate }}
+    </button>
+    <button
+      class="disapprove-btn"
+      (click)="updateRequest(request.id, false, request.type)"
+    >
+      {{ 'REQUESTS.BUTTON.DISAPPROVE' | translate }}
+    </button>
+  </div>
+
+  <div
+    class="block"
+    *ngIf="request.senderId === user.id && request.status === RequestStatusEnum.Pending"
+    (click)="deleteRequest(request.id)"
+  >
+    <button class="delete-request-btn">
+      {{ 'REQUESTS.BUTTON.CANCEL_REQUEST' | translate }}
+    </button>
+  </div>
+</div>

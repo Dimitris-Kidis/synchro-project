@@ -1,0 +1,12 @@
+<synchro-menu></synchro-menu>
+
+<main>
+  <mat-toolbar [ngClass]="themeService.themeSignal()">
+    <div class="topbar-title">{{ pageTitleService.pageTitle$ | async | translateResolveNull }}</div>
+    <synchro-layout-header></synchro-layout-header>
+  </mat-toolbar>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</main>

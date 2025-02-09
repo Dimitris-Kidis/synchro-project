@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="header-container">
+    <span class="header-title">{{ event.title | defaultValue }}</span>
+    @if (hasAccess) {
+    <div class="actions-container">
+      <button
+        class="edit"
+        (click)="editEvent()"
+      >
+        <mat-icon
+          class="edit-icon"
+          [svgIcon]="'edit-pencil-icon'"
+        ></mat-icon>
+      </button>
+      <button
+        class="delete"
+        (click)="deleteEvent()"
+      >
+        <mat-icon
+          class="trash-icon"
+          [svgIcon]="'trash-icon'"
+        ></mat-icon>
+      </button>
+    </div>
+    }
+  </div>
+
+  @if (event.createdBy) {
+  <span class="author-container">
+    <synchro-user-avatar
+      [size]="ImageSizeEnum.ExtraSmall"
+      [customUser]="mapUser(event.createdBy.split(' '), event.userAvatar)"
+    ></synchro-user-avatar>
+    {{ event.createdBy | defaultValue }}
+    <span class="description">{{ event.createdAt | date : 'dd/MM/yyyy HH:mm' }}</span>
+  </span>
+  }
+  <div
+    class="description"
+    *ngIf="event.description"
+  >
+    {{ event.description }}
+  </div>
+
+  <div class="dates-container">
+    <div class="block">
+      <div class="label">{{ 'CALENDAR.LABEL.START_DATE' | translate }}:</div>
+      <div>{{ event.startDateTime | date : 'dd/MM/yyyy HH:mm' }}</div>
+    </div>
+    <div
+      class="block"
+      *ngIf="event.endDateTime"
+    >
+      <div class="label">{{ 'CALENDAR.LABEL.END_DATE' | translate }}:</div>
+      <div>{{ event.endDateTime | date : 'dd/MM/yyyy HH:mm' }}</div>
+    </div>
+  </div>
+
+  <!-- @if (post.description) {
+  <span class="description">{{ post.description | defaultValue }}</span>
+  } @if (hasAdminRole) {
+  <span class="description">{{ post.audienceType ?? AudienceTypeEnum.All | enumName : AudienceTypeEnum }}</span>
+  } @if (post.image) {
+  <div
+    class="post-image-container"
+    [ngStyle]="{ backgroundImage: 'url(' + post.image + ')' }"
+  >
+    <img
+      class="post-image"
+      [src]="post.image"
+      [alt]="'FEED.POST.IMAGE_ALT_TEXT' | translate"
+    />
+  </div>
+  } -->
+  <div class="body-container">
+    @if (event.content) {
+    <div
+      class="content"
+      [innerHTML]="event.content | defaultValue"
+    ></div>
+    }
+
+    <div class="footer">
+      @if (event.links) {
+      <synchro-link-list [links]="event.links"></synchro-link-list>
+      }
+      <div class="info">
+        @if (event.lastModifiedBy && event.lastModifiedAt) {
+        <span class="info-text">
+          <span
+            ><strong>{{ 'FEED.POST.LABEL.MODIFIED_BY' | translate }}:</strong> {{ event.lastModifiedBy }}
+          </span>
+          <strong>{{ 'FEED.POST.LABEL.MODIFIED_AT' | translate }}:</strong>
+          {{ event.lastModifiedAt | date : 'dd/MM/yyyy HH:mm' }}</span
+        >
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="file-storage">
+  <div
+    class="upload-area"
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    [class.drag-over]="isDragOver"
+  >
+    <p *ngIf="!isBusy">{{ 'FILE_STORAGE.DRAG_AND_DROP.PLACEHOLDER' | translate }}</p>
+    <mat-spinner
+      *ngIf="isBusy"
+      [diameter]="20"
+    ></mat-spinner>
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      hidden
+      #fileInput
+    />
+    <button
+      (click)="fileInput.click()"
+      [disabled]="isBusy"
+    >
+      {{ 'FILE_STORAGE.DRAG_AND_DROP.BUTTON.SELECT' | translate }}
+    </button>
+  </div>
+
+  <div class="file-info">
+    <table
+      class="file-table"
+      *ngIf="files.length"
+    >
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>{{ 'FILE_STORAGE.TABLE.HEADER.FILE_NAME' | translate }}</th>
+          <th>{{ 'FILE_STORAGE.TABLE.HEADER.SIZE' | translate }}</th>
+          <th>{{ 'FILE_STORAGE.TABLE.HEADER.TYPE' | translate }}</th>
+          <th>{{ 'FILE_STORAGE.TABLE.HEADER.CREATED_BY' | translate }}</th>
+          <th>{{ 'FILE_STORAGE.TABLE.HEADER.CREATED_AT' | translate }}</th>
+          <th>{{ 'FILE_STORAGE.TABLE.HEADER.ACTIONS' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let file of files; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ file.fileName }}</td>
+          <td>{{ file.size | fileSize }}</td>
+          <td>{{ file.type ?? DocumentTypeEnum.StorageFile | enumName : DocumentTypeEnum }}</td>
+          <td>{{ file.createdBy }}</td>
+          <td>{{ file.createdAt | date : 'dd/MM/yyyy HH:mm' }}</td>
+          <td class="buttons-container">
+            <button
+              class="delete"
+              (click)="removeFile(file.id!)"
+            >
+              {{ 'FILE_STORAGE.TABLE.BUTTON.ACTIONS.REMOVE' | translate }}
+            </button>
+            <button
+              class="download"
+              (click)="downloadFile(file.id!, file.fileName!)"
+            >
+              {{ 'FILE_STORAGE.TABLE.BUTTON.ACTIONS.DOWNLOAD' | translate }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <synchro-empty-list
+      *ngIf="!files.length"
+      [imageName]="'floppy-disk.png'"
+    ></synchro-empty-list>
+  </div>
+</div>

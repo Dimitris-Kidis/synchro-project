@@ -1,0 +1,144 @@
+<div class="container">
+  <div class="personal-info">
+    <div class="avatar">
+      <synchro-user-avatar
+        [size]="ImageSizeEnum.ExtraLarge"
+        [isInUploadMode]="true"
+      ></synchro-user-avatar>
+    </div>
+
+    <button
+      class="delete-avatar-btn"
+      (click)="deleteAvatar()"
+    >
+      {{ 'PROFILE.AVATAR.BUTTON.DELETE' | translate }}
+    </button>
+  </div>
+
+  <div class="other">
+    <div class="row">
+      <div class="input">
+        <label class="label">{{ 'PROFILE.EDIT.FIELD.BASIC_INFO' | translate }}</label>
+
+        <form
+          name="form"
+          class="form"
+          #form="ngForm"
+          id="basicInfoId"
+          autocomplete="off"
+        >
+          <div class="control">
+            <synchro-text-edit-control
+              [(value)]="user.firstName"
+              [config]="config.firstName"
+              [schema]="schema.firstName"
+              class="control-slim"
+            ></synchro-text-edit-control>
+          </div>
+
+          <div class="control">
+            <synchro-text-edit-control
+              [(value)]="user.lastName"
+              [config]="config.lastName"
+              [schema]="schema.lastName"
+              class="control-slim"
+            ></synchro-text-edit-control>
+          </div>
+
+          <div class="control">
+            <synchro-number-edit-control
+              [(value)]="user.age"
+              [config]="config.age"
+              [schema]="schema.age"
+              [allowZero]="false"
+              class="control-slim"
+            ></synchro-number-edit-control>
+          </div>
+
+          <div class="button-container">
+            <button
+              class="cancel-btn"
+              (click)="cancel()"
+            >
+              {{ 'COMMON.CANCEL' | translate }}
+            </button>
+            <button
+              class="save-btn"
+              (click)="save()"
+              [disabled]="isBusy || form.invalid"
+            >
+              {{ 'COMMON.SAVE' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="input">
+        <label class="label">{{ 'PROFILE.EDIT.FIELD.CHANGE_PASSWORD' | translate }}</label>
+        <form
+          name="form"
+          class="form"
+          #form="ngForm"
+          id="changePasswordId"
+          autocomplete="off"
+        >
+          <div class="control">
+            <synchro-text-edit-control
+              [(value)]="passwordDto.oldPassword"
+              [config]="config.oldPassword"
+              [schema]="schema.oldPassword"
+              class="control-slim"
+            ></synchro-text-edit-control>
+          </div>
+
+          <div class="control">
+            <synchro-text-edit-control
+              [(value)]="passwordDto.newPassword"
+              [config]="config.newPassword"
+              [schema]="schema.newPassword"
+              class="control-slim"
+              (valueChange)="validatePassword()"
+            ></synchro-text-edit-control>
+          </div>
+
+          @if (passwordDto.oldPassword) {
+
+          <div class="password-requirements">
+            {{ 'PROFILE.RESET_PASSWORD.HINT.STATIC_TEXT' | translate }}
+            <span
+              [class.valid]="requirements.hasUppercase"
+              [class.invalid]="!requirements.hasUppercase"
+            >
+              {{ 'PROFILE.RESET_PASSWORD.HINT.UPPERCASE' | translate }}</span
+            >,<span
+              [class.valid]="requirements.hasNumber"
+              [class.invalid]="!requirements.hasNumber"
+            >
+              {{ 'PROFILE.RESET_PASSWORD.HINT.NUMBER' | translate }}</span
+            >,<span
+              [class.valid]="requirements.hasSpecialChar"
+              [class.invalid]="!requirements.hasSpecialChar"
+            >
+              {{ 'PROFILE.RESET_PASSWORD.HINT.SPECIAL_CHARACTER' | translate }}
+            </span>
+            <span
+              [class.valid]="requirements.isValidLength"
+              [class.invalid]="!requirements.isValidLength"
+            >
+              {{ 'PROFILE.RESET_PASSWORD.HINT.LENGTH' | translate }}
+            </span>
+          </div>
+          }
+
+          <button
+            class="reset-btn"
+            (click)="resetPassword()"
+            [disabled]="!passwordDto.oldPassword || !passwordDto.newPassword || isBusy"
+          >
+            {{ 'PROFILE.EDIT.BUTTON.RESET' | translate }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

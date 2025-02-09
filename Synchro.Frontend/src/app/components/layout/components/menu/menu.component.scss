@@ -1,0 +1,50 @@
+@import '../../../../../styles/synchro-config';
+@import '../../../../../styles';
+
+.menu-wrapper {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+
+  .mat-toolbar {
+    overflow: hidden;
+    padding: 5px 0 0 14px;
+    font-size: 22px;
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--bg-c-menu);
+  }
+
+  .items-container {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    padding: 20px 10px 20px 20px;
+
+    .items-list {
+      flex: auto;
+      position: relative;
+
+      .items {
+        position: absolute;
+        inset: 0;
+        overflow-y: auto;
+      }
+    }
+  }
+}
+
+.menu-items {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 16px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg-c-footer-and-header);
+    border-radius: 2px;
+    width: 5px;
+  }
+}

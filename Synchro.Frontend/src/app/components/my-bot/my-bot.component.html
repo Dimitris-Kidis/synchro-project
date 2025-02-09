@@ -1,0 +1,136 @@
+<div class="container">
+  <div class="general-info">
+    <synchro-progress-circle
+      [correctPercentage]="takeWholePart(questionDataDto.correctlyAnsweredQuestionsPercentage!)"
+      [displayPercents]="true"
+      [lowerBorder]="50"
+      size="medium"
+    ></synchro-progress-circle>
+
+    <synchro-divider
+      [direction]="DividerPositionEnum.Vertical"
+      [size]="'large'"
+    ></synchro-divider>
+
+    <div class="info-block">
+      <span class="number">{{ questionDataDto.totalQuestionsCount ?? 0 }}</span>
+      <span class="label">{{ 'MY_BOT.TOTAL_QUESTIONS' | translate }}</span>
+    </div>
+
+    <synchro-divider
+      [direction]="DividerPositionEnum.Vertical"
+      [size]="'large'"
+    ></synchro-divider>
+
+    <div class="info-block">
+      <span class="number">{{ questionDataDto.answeredQuestionsCount ?? 0 }}</span>
+      <span class="label">{{ 'MY_BOT.COVERED_COUNT' | translate }}</span>
+    </div>
+
+    <synchro-divider
+      [direction]="DividerPositionEnum.Vertical"
+      [size]="'large'"
+    ></synchro-divider>
+
+    <div class="info-block">
+      <span class="number">{{ questionDataDto.correctlyAnsweredQuestionsCount ?? 0 }}</span>
+      <span class="label">{{ 'MY_BOT.CORRECT_COUNT' | translate }}</span>
+    </div>
+  </div>
+
+  <div class="questions-list">
+    @for (question of questionDataDto.questions; track $index) {
+
+    <div class="question">
+      @if (question.isCorrect) {
+      <img
+        class="is-correct-icon"
+        src="../../../assets/images/apple-tick.png"
+        alt=""
+      />
+      } @else {
+      <img
+        class="is-correct-icon"
+        src="../../../assets/images/apple-cross.png"
+        alt=""
+      />
+      }
+
+      <synchro-divider
+        [direction]="DividerPositionEnum.Vertical"
+        [size]="'large'"
+      ></synchro-divider>
+
+      <img
+        class="question-image"
+        *ngIf="question.image"
+        src="{{ question.image }}"
+        alt=""
+      />
+
+      <synchro-divider
+        *ngIf="question.image"
+        [direction]="DividerPositionEnum.Vertical"
+        [size]="'large'"
+      ></synchro-divider>
+
+      <div
+        class="question-text"
+        [matTooltip]="'MY_BOT.TOOLTIP.FIELD.QUESTION_TEXT' | translate"
+        [matTooltipPosition]="'below'"
+      >
+        {{ question.text }}
+      </div>
+
+      <synchro-divider
+        [direction]="DividerPositionEnum.Vertical"
+        [size]="'large'"
+      ></synchro-divider>
+
+      <div
+        class="question-topics"
+        [matTooltip]="'MY_BOT.TOOLTIP.FIELD.QUESTION_TOPICS' | translate"
+        [matTooltipPosition]="'below'"
+      >
+        {{ question.topics }}
+      </div>
+
+      <synchro-divider
+        [direction]="DividerPositionEnum.Vertical"
+        [size]="'large'"
+      ></synchro-divider>
+
+      <div
+        class="question-my-answer"
+        [matTooltip]="'MY_BOT.TOOLTIP.FIELD.QUESTION_MY_ANSWER' | translate"
+        [matTooltipPosition]="'below'"
+      >
+        {{ question.userAnswer }}
+      </div>
+
+      <synchro-divider
+        [direction]="DividerPositionEnum.Vertical"
+        [size]="'large'"
+      ></synchro-divider>
+
+      <div
+        class="question-correct-answer"
+        [matTooltip]="'MY_BOT.TOOLTIP.FIELD.QUESTION_CORRECT_ANSWER' | translate"
+        [matTooltipPosition]="'below'"
+      >
+        {{ question.correctAnswer }}
+      </div>
+    </div>
+    } @empty {
+    <div class="empty-list">
+      <img
+        class="empty-image"
+        src="assets/images/empty-list.png"
+        width="100px"
+        alt=""
+      />
+      <span class="empty-text"> {{ 'COMMON.LIST.EMPTY' | translate }}</span>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+  @if (!isEditMode) {
+
+  <div class="search-container">
+    <form
+      #form="ngForm"
+      class="search"
+      (ngSubmit)="form.form.valid && search()"
+    >
+      <synchro-text-edit-control
+        [config]="config.searchInput"
+        [schema]="schema.searchInput"
+        [(value)]="queryFilters.searchInput"
+        class="search-input"
+      ></synchro-text-edit-control>
+
+      <button
+        type="submit"
+        class="search-button"
+        mat-flat-button
+      >
+        <span>{{ 'COMMON.SEARCH' | translate }}</span>
+        <mat-icon class="search-button-icon">search</mat-icon>
+      </button>
+
+      <button
+        class="search-button"
+        mat-flat-button
+        (click)="createWikiPage()"
+      >
+        <span>{{ 'WIKI.SEARCH.BUTTON.LABEL' | translate }}</span>
+        <mat-icon class="search-button-icon">arrow_right</mat-icon>
+      </button>
+    </form>
+    @if (wikiPages.length) {
+    <div class="total-results">{{ 'WIKI.SEARCH.RESULT.NUMBER' | translate }}: {{ totalCount }}</div>
+    }
+  </div>
+
+  <div class="search-results">
+    @for (wikiPage of wikiPages; track $index) {
+    <synchro-wiki-view
+      [wikiPage]="wikiPage"
+      [hasActions]="true"
+      (refreshWikiPagesList)="refreshWikiPagesList()"
+      (switchEditMode)="editWikiPage($event)"
+    ></synchro-wiki-view>
+    } @empty {
+    <synchro-empty-list [imageName]="'memo.png'"></synchro-empty-list>
+    }
+  </div>
+  } @else {
+  <synchro-wiki-edit
+    [wikiPage]="currentWikiPage"
+    [isCreateMode]="isCreateMode"
+    (refreshWikiPageList)="refreshWikiPagesList()"
+  ></synchro-wiki-edit>
+  }
+</div>

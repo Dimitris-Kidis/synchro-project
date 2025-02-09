@@ -1,0 +1,41 @@
+<div
+  class="avatar-container {{ size }}"
+  [ngClass]="{ 'upload-mode': isInUploadMode, }"
+  (click)="handleClick()"
+>
+  <div
+    *ngIf="isLoading"
+    class="skeleton-loader"
+  ></div>
+  <img
+    *ngIf="!isLoading && user.image"
+    [src]="user.image"
+    [alt]="user.firstName + ' ' + user.lastName + ' ' + ('COMMON.AVATAR' | translate)"
+    class="avatar-image"
+  />
+  <div
+    *ngIf="!isLoading && !user.image"
+    class="avatar-initials"
+  >
+    {{ user.firstName + ' ' + user.lastName | initials }}
+  </div>
+  <div
+    *ngIf="isInUploadMode"
+    class="upload-overlay"
+  >
+    <mat-icon class="upload-icon">add_a_photo</mat-icon>
+  </div>
+  <div
+    *ngIf="label"
+    class="avatar-label label-{{ size }}"
+  >
+    {{ label }}
+  </div>
+  <input
+    #fileInput
+    accept="image/png, image/jpeg"
+    type="file"
+    class="hidden-file-input"
+    (change)="onFileSelected($event)"
+  />
+</div>

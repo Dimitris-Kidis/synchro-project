@@ -1,0 +1,136 @@
+@import '../../../../../styles/synchro-config';
+@import '../../../../../styles';
+
+.menu-section {
+  .menu-section-title {
+    font-size: 14px;
+    color: var(--t-c-sections-names);
+    margin: 10px 0 5px;
+  }
+
+  .menu-item {
+    position: relative;
+
+    &:has(.active) {
+      .menu-item-header {
+        font-weight: bold;
+      }
+    }
+
+    .menu-item-header {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 5px 5px 5px 0px;
+      font-size: 14px;
+      // color: #212529;
+      color: var(--t-c-sections-names);
+
+      .item-title {
+        margin-left: 5px;
+      }
+
+      .item-icon {
+        // width: 15px;
+        // height: 15px;
+      }
+
+      .menu-icon {
+        margin-right: 10px;
+      }
+
+      .toggle-icon-container {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .toggle-icon {
+          width: 24px;
+          height: 24px;
+          transition: transform 0.3s;
+          color: var(--t-c-sections-names);
+
+          .arrow-icon {
+            color: var(--t-c-sections-names);
+          }
+
+          &.collapsed {
+            transform: rotate(-90deg);
+          }
+        }
+      }
+
+      &:hover {
+        text-decoration: underline;
+        font-weight: bold;
+      }
+    }
+
+    .menu-subitems {
+      margin-left: 20px;
+      overflow: hidden;
+      position: relative;
+      padding-left: 20px; // Отступ для вертикальной линии
+      transition: all 0.3s ease;
+
+      // Вертикальная линия
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 10px; // Расположение линии
+        width: 2px;
+        height: 100%;
+        background-color: var(--t-c-sections-names);
+      }
+
+      .menu-subitem {
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        color: var(--t-c-sections-names);
+        // padding: 3px 0;
+        // padding-left: 10px;
+        padding: 5px 10px;
+        border-radius: $border-radius-light;
+        width: 140px;
+
+        // Соединение под-айтемов линией
+        &::before {
+          content: '';
+          position: absolute;
+          left: -10px; // Совпадает с линией
+          top: 0;
+          bottom: 0;
+          width: 2px;
+          background-color: var(--border-light);
+        }
+
+        .notification {
+          margin-left: auto;
+          font-family: $font-family-basic;
+          background: var(--t-c-accent);
+          color: white;
+          font-size: 10px;
+          padding: 2px 5px;
+          border-radius: 10px;
+        }
+
+        &:hover {
+          color: var(--t-c-error);
+        }
+      }
+    }
+  }
+}
+
+.menu-subitem.active {
+  font-family: $font-family-playful;
+  font-weight: 800;
+  background-color: $background-color-active-sub-menu-item;
+  color: $text-color-accent !important;
+}

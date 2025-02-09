@@ -1,0 +1,38 @@
+<div
+  class="menu-wrapper"
+  [class.minimized]="menuService.minimizedMode$ | async"
+>
+  <mat-toolbar>
+    <a routerLink="/">
+      <img
+        *ngIf="menuService.minimizedMode$ | async"
+        class="synchro-brand-mark"
+        src="assets/images/logo.webp"
+        alt="{{ 'PROJECT.NAME' | translate }}"
+        width="40"
+        height="40"
+      />
+
+      <img
+        *ngIf="(menuService.minimizedMode$ | async) === false"
+        class="synchro-logo"
+        src="assets/images/logo.svg"
+        alt="{{ 'PROJECT.NAME' | translate }}"
+        width="200"
+        height="80"
+      />
+    </a>
+  </mat-toolbar>
+
+  <div class="items-container">
+    <div class="items-list">
+      <div class="items menu-items">
+        <synchro-menu-item
+          *ngFor="let section of menuSections"
+          [menuSection]="section"
+          (deactivateAll)="resetAll()"
+        ></synchro-menu-item>
+      </div>
+    </div>
+  </div>
+</div>

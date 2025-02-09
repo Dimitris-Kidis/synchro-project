@@ -1,0 +1,87 @@
+<synchro-header></synchro-header>
+
+<div class="auth-container">
+  <div class="type-writer">
+    <synchro-type-writer [staticText]="basicStaticText"></synchro-type-writer>
+  </div>
+  <div class="right-side">
+    <div class="auth-box">
+      <h2>{{ 'LOGIN.WELCOME_TO_SYNCHRO' | translate }}!</h2>
+
+      <form
+        name="form"
+        class="form"
+        #form="ngForm"
+        id="loginFormId"
+        autocomplete="off"
+      >
+        <div class="control">
+          <synchro-text-edit-control
+            [(value)]="signUpInfo.firstName"
+            [config]="config.firstName"
+            [schema]="schema.firstName"
+            class="control-slim"
+          ></synchro-text-edit-control>
+        </div>
+
+        <div class="control">
+          <synchro-text-edit-control
+            [(value)]="signUpInfo.lastName"
+            [config]="config.lastName"
+            [schema]="schema.lastName"
+            class="control-slim"
+          ></synchro-text-edit-control>
+        </div>
+
+        <div class="control">
+          <synchro-email-edit-control
+            [(emailAddress)]="signUpInfo.email"
+            [config]="config.email"
+            [schema]="schema.email"
+            class="control-slim"
+          ></synchro-email-edit-control>
+        </div>
+
+        <div class="control">
+          <synchro-text-edit-control
+            [(value)]="signUpInfo.password"
+            [config]="config.password"
+            [schema]="schema.password"
+            class="control-slim"
+          ></synchro-text-edit-control>
+        </div>
+
+        <div class="control">
+          <synchro-number-edit-control
+            [(value)]="signUpInfo.age"
+            [config]="config.age"
+            [schema]="schema.age"
+            [allowZero]="false"
+            class="control-slim"
+          ></synchro-number-edit-control>
+        </div>
+
+        <div
+          [matTooltip]="'REGISTER.SIGNUP.TOOLTIP' | translate"
+          [matTooltipPosition]="'below'"
+          [matTooltipDisabled]="form.valid"
+        >
+          <button
+            class="auth-button"
+            (click)="register()"
+            [disabled]="isBusy || form.invalid"
+          >
+            {{ 'COMMON.SIGNUP' | translate }}
+          </button>
+        </div>
+      </form>
+
+      <p class="auth-footer">
+        {{ 'REGISTER.ALREADY_HAVE_ACCOUNT' | translate }}
+        <span (click)="redirectToSignIn()">{{ 'COMMON.SIGNUP' | translate }}</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<synchro-footer></synchro-footer>

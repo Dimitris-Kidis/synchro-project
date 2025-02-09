@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import '../../../styles';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--t-c-primary);
+  color: #eee;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .static {
+    color: var(--t-c-primary);
+  }
+}
+
+.container p {
+  font-size: 3rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cursor.typing {
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.color-red {
+  color: red;
+}
+
+.color-green {
+  color: green;
+}
+
+.color-blue {
+  color: blue;
+}
+
+.color-yellow {
+  color: rgb(204, 204, 83);
+  text-decoration: underline;
+}
+
+.color-orange {
+  color: orange;
+}
+
+.color-purple {
+  color: purple;
+  font-weight: bold;
+}
+
+.color-pink {
+  color: pink;
+  text-decoration: italic;
+}
+
+.color-gray {
+  color: gray;
+}
+
+.color-brown {
+  color: brown;
+}
+
+.color-cyan {
+  color: cyan;
+}
+
+.color-teal {
+  color: teal;
+}
+
+.color-lime {
+  color: lime;
+}
+
+.color-indigo {
+  color: indigo;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-italic {
+  font-style: italic;
+}

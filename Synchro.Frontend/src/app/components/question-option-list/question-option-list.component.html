@@ -1,0 +1,74 @@
+<div
+  *ngIf="isEditMode"
+  class="options-container"
+  cdkDropList
+  [cdkDropListData]="localOptions"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div
+    class="option-item"
+    *ngFor="let option of localOptions; let i = index"
+    cdkDrag
+    [cdkDragData]="i"
+  >
+    <label class="custom-radio">
+      <input
+        type="radio"
+        name="correctOption"
+        [checked]="option.isCorrect"
+        (change)="setCorrectOption(i)"
+      />
+      <span class="radio-mark"></span>
+    </label>
+
+    <input
+      class="option-input"
+      [(ngModel)]="localOptions[i].value"
+      (input)="onInputChange(i)"
+      (keydown.enter)="addNewOption(this.localOptions.length - 1)"
+      [placeholder]="('BOT.PANEL.FIELD.PLACEHOLDER.OPTION' | translate) + ' ' + (i + 1)"
+    />
+
+    <mat-icon
+      class="remove-option-btn"
+      (click)="removeOption(i)"
+      [ngClass]="{ disabled: localOptions.length === 1 }"
+      [svgIcon]="'remove-option'"
+    ></mat-icon>
+
+    <mat-icon
+      class="drag-handle"
+      cdkDragHandle
+      >drag_indicator</mat-icon
+    >
+  </div>
+
+  <button
+    *ngIf="localOptions.length < 5"
+    class="add-option-btn"
+    (click)="addNewOption(this.localOptions.length - 1)"
+  >
+    +
+  </button>
+</div>
+
+<div
+  *ngIf="!isEditMode"
+  class="options-container"
+>
+  <div
+    class="option-item"
+    *ngFor="let option of localOptions; let i = index; trackById"
+  >
+    <label class="custom-radio disabled">
+      <input
+        type="radio"
+        [name]="'correctOption_' + uniqueId"
+        [checked]="option.isCorrect"
+        disabled
+      />
+      <span class="radio-mark"></span>
+    </label>
+    <span>{{ option.value }}</span>
+  </div>
+</div>

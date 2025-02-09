@@ -1,0 +1,47 @@
+<div class="upload-container">
+  <input
+    #fileInput
+    accept="image/png, image/jpeg"
+    type="file"
+    class="hidden-file-input"
+    (change)="onFileSelected($event)"
+  />
+  <div
+    class="buttons-container"
+    *ngIf="hasActions"
+  >
+    <button
+      (click)="fileInput.click()"
+      class="add-button"
+    >
+      <mat-icon
+        class="plus-icon"
+        [svgIcon]="'plus-icon'"
+      ></mat-icon>
+    </button>
+
+    @if (!imageUrl) {
+    <span class="hint">{{ 'UPLOAD_ATTACHMENT.PLACEHOLDER' | translate }}</span>
+    } @if (imageUrl) {
+    <button
+      (click)="onFileRemoved()"
+      class="remove-button"
+    >
+      <mat-icon
+        class="trash-icon"
+        [svgIcon]="'trash-icon'"
+      ></mat-icon>
+    </button>
+    }
+  </div>
+
+  <div
+    *ngIf="imageUrl"
+    class="image-preview"
+  >
+    <img
+      [src]="imageUrl"
+      alt="Preview of uploaded image"
+    />
+  </div>
+</div>

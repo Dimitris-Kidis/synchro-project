@@ -1,0 +1,66 @@
+<div
+  class="menu-section"
+  *ngIf="!menuSection.allowedUserRoles || menuSection.allowedUserRoles.includes(userRole)"
+>
+  <div
+    class="menu-section-title"
+    *ngIf="menuSection.sectionTranslationKey"
+  >
+    {{ menuSection.sectionTranslationKey | translate }}
+  </div>
+
+  <div
+    class="menu-item"
+    *ngFor="let item of menuSection.sectionItems"
+  >
+    <div
+      class="menu-item-header"
+      (click)="toggleCollapse(item, !isTooltipDisabled(item))"
+      [class.has-subitems]="hasSubItems(item)"
+      [routerLink]="getRouterLink(item)"
+      [matTooltip]="item.tooltipMessageTranslationKey! | translate"
+      [matTooltipPosition]="'below'"
+      [matTooltipDisabled]="isTooltipDisabled(item)"
+    >
+      <div class="toggle-icon-container">
+        <i
+          class="toggle-icon"
+          *ngIf="hasSubItems(item) && isTooltipDisabled(item)"
+          [ngClass]="{ collapsed: isCollapsed(item) }"
+        >
+          <mat-icon
+            class="arrow-icon"
+            [svgIcon]="'section-arrow'"
+          ></mat-icon>
+        </i>
+      </div>
+      <i class="item-icon">
+        <mat-icon [svgIcon]="item.itemIcon"></mat-icon>
+      </i>
+      <span class="item-title">{{ getItemTitle(item) | translate }}</span>
+    </div>
+
+    <div
+      class="menu-subitems"
+      *ngIf="hasSubItems(item) && !isCollapsed(item)"
+      [@expandCollapse]
+    >
+      <ng-container *ngFor="let subItem of item.subItems">
+        <div
+          class="menu-subitem"
+          *ngIf="!subItem.allowedUserRoles || subItem.allowedUserRoles.includes(userRole)"
+          [ngClass]="{ active: subItem.isActive }"
+          [routerLink]="[item.prefixNavigationPath, subItem.navigationPath]"
+          (click)="setActive(subItem)"
+        >
+          <span>{{ subItem.subItemNameTranslationKey | translate }}</span>
+          <span
+            class="notification"
+            *ngIf="subItem.notificationContent"
+            >{{ subItem.notificationContent }}</span
+          >
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

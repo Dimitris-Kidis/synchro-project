@@ -1,0 +1,58 @@
+<div class="container">
+  <span class="header">{{
+    (isCreateMode ? 'WIKI.PAGE.EDIT.HEADER.CREATE' : 'WIKI.PAGE.EDIT.HEADER.UPDATE') | translate
+  }}</span>
+
+  <form
+    #form="ngForm"
+    class="form"
+    name="form"
+    autocomplete="off"
+    (ngSubmit)="(form.form.valid)"
+  >
+    <div class="row">
+      <synchro-text-edit-control
+        [(value)]="wikiPage.title"
+        [config]="config.title"
+        [schema]="schema.title"
+        class="control"
+      ></synchro-text-edit-control>
+    </div>
+
+    <div class="content">
+      <quill-editor
+        [(ngModel)]="wikiPage.content"
+        [modules]="quillConfig.modules!"
+        [placeholder]="quillConfig.placeholder!"
+        [readOnly]="quillConfig.readOnly!"
+        [format]="quillConfig.format!"
+        class="editor"
+        name="content"
+      ></quill-editor>
+    </div>
+
+    <div>
+      <synchro-tags
+        [tags]="wikiPage.tags ?? []"
+        (refreshTags)="refreshTags($event)"
+        [isEditMode]="true"
+      ></synchro-tags>
+    </div>
+
+    <div class="actions">
+      <button
+        class="cancel-btn"
+        (click)="cancel()"
+      >
+        {{ 'COMMON.CANCEL' | translate }}
+      </button>
+      <button
+        class="save-btn"
+        (click)="save()"
+        [disabled]="isBusy || form.invalid"
+      >
+        {{ (isCreateMode ? 'COMMON.CREATE' : 'COMMON.UPDATE') | translate }}
+      </button>
+    </div>
+  </form>
+</div>

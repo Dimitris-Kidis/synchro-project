@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="personal-info">
+    <div class="avatar">
+      <synchro-user-avatar
+        [size]="ImageSizeEnum.ExtraLarge"
+        [label]="user.role! | roleName"
+      ></synchro-user-avatar>
+    </div>
+
+    <div class="input">
+      <label class="label">{{ 'PROFILE.FIELD.LABEL.FIRST_NAME' | translate }}</label
+      >{{ user.firstName }}
+    </div>
+    <div class="input">
+      <label class="label">{{ 'PROFILE.FIELD.LABEL.LAST_NAME' | translate }}</label
+      >{{ user.lastName }}
+    </div>
+    <div class="input">
+      <label class="label">{{ 'PROFILE.FIELD.LABEL.AGE' | translate }}</label
+      >{{ user.age }}
+    </div>
+    <div class="input">
+      <label class="label">{{ 'PROFILE.FIELD.LABEL.EMAIL' | translate }}</label
+      >{{ user.email }}
+    </div>
+  </div>
+  <div class="other">
+    <div class="row">
+      <div class="input">
+        <label class="label">{{ 'PROFILE.FIELD.LABEL.SECRET_KEY' | translate }}</label>
+        <div class="secret-key-container">
+          <span>{{ isSecretVisible ? user.secretKey : maskedSecretKey }}</span>
+          <button
+            type="button"
+            class="toggle-visibility"
+            (click)="toggleSecretVisibility()"
+          >
+            <mat-icon
+              class="closed"
+              *ngIf="isSecretVisible"
+              title="{{ 'COMMON.BUTTON.EYE.OPENED.LABEL' | translate }}"
+              >visibility_off</mat-icon
+            >
+            <mat-icon
+              *ngIf="!isSecretVisible"
+              title="{{ 'COMMON.BUTTON.EYE.CLOSED.LABEL' | translate }}"
+              >visibility</mat-icon
+            >
+          </button>
+        </div>
+      </div>
+
+      <div class="input regenerate-key">
+        <label class="label">{{ 'PROFILE.FIELD.LABEL.REGENERATE_SECRET_KEY' | translate }}</label>
+        <mat-icon
+          [@rotate]="isKeyLoading"
+          (click)="regenerateKey()"
+          >refresh</mat-icon
+        >
+      </div>
+      <button
+        class="edit-btn"
+        (click)="edit()"
+      >
+        {{ 'COMMON.BUTTON.EDIT' | translate }}
+      </button>
+    </div>
+
+    <div
+      class="request-input"
+      *ngIf="user.role !== RoleEnum.Admin"
+    >
+      <label class="request-label">{{ 'PROFILE.FIELD.LABEL.CREATE_REQUEST' | translate }}</label>
+
+      <div
+        class="dropdown-container"
+        (clickOutside)="closeDropdown()"
+      >
+        <button
+          class="dropdown-button"
+          (click)="toggleDropdown()"
+        >
+          {{ selectedOption?.label ?? 'PROFILE.FIELD.PLACEHOLDER.CREATE_REQUEST' | translate }}
+          <mat-icon
+            class="arrow"
+            [svgIcon]="'section-arrow'"
+          ></mat-icon>
+        </button>
+
+        <div
+          class="dropdown-list"
+          *ngIf="isDropdownOpen"
+        >
+          <div
+            *ngFor="let option of options"
+            class="dropdown-item"
+            (click)="selectOption(option)"
+          >
+            {{ option.label | translate }}
+          </div>
+        </div>
+      </div>
+
+      <textarea
+        class="request-text"
+        [(ngModel)]="requestText"
+        placeholder="{{ 'PROFILE.FIELD.PLACEHOLDER.CREATE_REQUEST.TEXT' | translate }}"
+        [rows]="10"
+        [cols]="4"
+      ></textarea>
+
+      <button
+        class="send-request-btn"
+        [disabled]="!selectedOption"
+        (click)="sendRequest()"
+      >
+        {{ 'COMMON.BUTTON.SEND_REQUEST' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

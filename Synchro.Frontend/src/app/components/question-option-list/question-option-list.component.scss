@@ -1,0 +1,126 @@
+@import '../../../styles';
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .add-option-btn {
+    background-color: #e0e0e0;
+    border: none;
+    font-size: 18px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #d0d0d0;
+    }
+  }
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .option-input {
+    flex: 1;
+    font-family: monospace;
+    padding: 5px;
+    border-radius: $border-radius-light;
+    border: 1px solid var(--t-c-grey);
+  }
+
+  .drag-handle {
+    cursor: grab;
+    color: var(--t-c-grey);
+  }
+
+  .remove-option-btn {
+    color: var(--t-c-error);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
+  .disabled {
+    color: var(--t-c-grey);
+    cursor: unset;
+  }
+}
+
+.cdk-drag-preview {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.5;
+}
+
+.cdk-drag-animating {
+  transition: transform 0.2s ease;
+}
+
+.custom-radio {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-right: 5px;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked ~ .radio-mark {
+      // border-color: var(--t-c-primary);
+      // background-color: var(--t-c-primary);
+      border: 2px solid var(--t-c-grey);
+      // background-color: grey;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 9px;
+        height: 9px;
+        background-color: var(--t-c-accent);
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .radio-mark {
+    height: 16px;
+    width: 16px;
+    border: 2px solid var(--t-c-grey);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    .radio-mark {
+      border-color: var(--t-c-grey);
+      background-color: #f0f0f0;
+    }
+  }
+}

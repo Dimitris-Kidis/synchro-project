@@ -1,0 +1,15 @@
+<mat-tab-group animationDuration="300ms">
+  <mat-tab [label]="'REQUESTS.TAB.SENT' | translate">
+    <synchro-requests-view
+      [requests]="sentRequests"
+      (refreshRequests)="getRequests()"
+    ></synchro-requests-view>
+  </mat-tab>
+
+  <mat-tab [label]="'REQUESTS.TAB.RECEIVED' | translate">
+    <synchro-requests-view
+      [requests]="receivedRequests"
+      (refreshRequests)="getRequests()"
+    ></synchro-requests-view>
+  </mat-tab>
+</mat-tab-group>

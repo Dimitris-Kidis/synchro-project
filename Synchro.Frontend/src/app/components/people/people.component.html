@@ -1,0 +1,20 @@
+<div class="container">
+  @for (user of groupUsers; track $index) {
+  <div class="person">
+    <synchro-user-avatar [customUser]="mapUser(user)"></synchro-user-avatar>
+    <div class="block">
+      <div class="label">{{ 'PROFILE.FIELD.LABEL.FULL_NAME' | translate }}:</div>
+      <div>{{ user.firstName + ' ' + user.lastName | defaultValue }}</div>
+    </div>
+    <div class="block">
+      <div class="label">{{ 'PROFILE.FIELD.LABEL.EMAIL' | translate }}:</div>
+      <div>{{ user.email }}</div>
+    </div>
+    <div class="block">
+      <div class="label">{{ 'PROFILE.FIELD.LABEL.ROLE' | translate }}:</div>
+      <div>{{ user.role | roleName }}</div>
+    </div>
+  </div>
+  } @empty {
+  <synchro-empty-list [imageName]="'run-icon.png'"></synchro-empty-list> }
+</div>

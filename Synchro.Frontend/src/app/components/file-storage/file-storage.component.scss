@@ -1,0 +1,100 @@
+@import '../../../styles';
+
+.file-storage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+
+  .upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    &.drag-over {
+      background-color: #e6f7ff;
+      border-color: #1890ff;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      &:hover:not(:disabled) {
+        background-color: #40a9ff;
+      }
+    }
+  }
+
+  .file-info {
+    .file-table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+
+        button {
+          padding: 5px 10px;
+
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            filter: brightness(125%);
+          }
+        }
+
+        .delete {
+          background-color: var(--t-c-error-bright);
+        }
+
+        .download {
+          background-color: var(--t-c-accent);
+        }
+      }
+    }
+  }
+}

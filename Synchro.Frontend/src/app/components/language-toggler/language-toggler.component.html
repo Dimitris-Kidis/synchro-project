@@ -1,0 +1,15 @@
+<div class="dropdown">
+  <button class="dropdown-button">
+    {{ currentLanguageLabel }}
+    <span class="arrow-down">▼</span>
+  </button>
+  <div class="dropdown-menu">
+    <button
+      *ngFor="let lang of availableLanguages"
+      (click)="changeLanguage(lang.code)"
+      [ngClass]="{ active: lang.code === translateService.currentLang }"
+    >
+      {{ lang.label }}
+    </button>
+  </div>
+</div>

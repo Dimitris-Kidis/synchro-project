@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="search-container">
+    <form
+      #form="ngForm"
+      class="search"
+      (ngSubmit)="form.form.valid && search()"
+    >
+      <synchro-text-edit-control
+        [config]="config.searchInput"
+        [schema]="schema.searchInput"
+        [(value)]="queryFilters.searchInput"
+        class="search-input"
+      ></synchro-text-edit-control>
+
+      <button
+        type="submit"
+        class="search-button"
+        mat-flat-button
+      >
+        <span>{{ 'COMMON.SEARCH' | translate }}</span>
+        <mat-icon class="search-button-icon">search</mat-icon>
+      </button>
+    </form>
+    @if (users.length) {
+    <div class="total-results">{{ 'USERS.SEARCH.RESULT.NUMBER' | translate }}: {{ totalCount }}</div>
+    }
+  </div>
+  <div class="search-results">
+    @for (user of users; track $index) {
+    <div class="user-card">
+      <synchro-user-avatar
+        [size]="ImageSizeEnum.Medium"
+        [label]="user.role! | roleName"
+        [customUser]="mapUser(user)"
+      ></synchro-user-avatar>
+
+      <div class="information">
+        <span class="name">{{ user.firstName + ' ' + user.lastName }}</span>
+        <span class="email">email: {{ user.email }}</span>
+        <span class="joined">joined: {{ user.createdAt | date : 'dd/MM/yyyy' }}</span>
+      </div>
+
+      <div class="role-buttons-container">
+        <button
+          class="upgrade"
+          [matTooltip]="'USERS.BUTTON.TOOLTIP.UPGRADE' | translate"
+          [matTooltipPosition]="'left'"
+          [disabled]="user.role === RoleEnum.Admin"
+          (click)="updateUserRole(user.id, user.role, true)"
+        >
+          <mat-icon
+            class="upgrade-icon"
+            [svgIcon]="'upgrade-icon'"
+          ></mat-icon>
+        </button>
+        <button
+          class="downgrade"
+          [matTooltip]="'USERS.BUTTON.TOOLTIP.DOWNGRADE' | translate"
+          [matTooltipPosition]="'left'"
+          [disabled]="user.role === RoleEnum.Student"
+          (click)="updateUserRole(user.id, user.role, false)"
+        >
+          <mat-icon
+            class="downgrade-icon"
+            [svgIcon]="'downgrade-icon'"
+          ></mat-icon>
+        </button>
+      </div>
+    </div>
+    } @empty {
+    <synchro-empty-list [imageName]="'run-icon.png'"></synchro-empty-list>
+    }
+  </div>
+</div>

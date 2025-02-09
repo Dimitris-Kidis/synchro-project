@@ -1,0 +1,19 @@
+.footer {
+  background-color: var(--bg-c-footer-and-header);
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+  width: 100%;
+
+  p {
+    margin: 0;
+    color: var(--t-c-primary);
+    font-size: 14px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

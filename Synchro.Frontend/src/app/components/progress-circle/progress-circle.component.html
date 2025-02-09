@@ -1,0 +1,20 @@
+<div
+  class="progress-circle"
+  [ngClass]="size"
+>
+  <div class="circle">
+    <div
+      class="segment"
+      [style.backgroundImage]="conicGradient"
+    ></div>
+    <div class="center"></div>
+  </div>
+
+  <span
+    class="percentage"
+    [style.color]="textColor"
+    *ngIf="displayPercents"
+  >
+    {{ correctPercentage }}%
+  </span>
+</div>

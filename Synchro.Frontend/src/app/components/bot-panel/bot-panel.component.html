@@ -1,0 +1,88 @@
+<mat-tab-group animationDuration="300ms">
+  <mat-tab [label]="'BOT.PANEL.TAB.ADD_NEW_QUESTION' | translate">
+    <synchro-question-edit (refreshQuestionList)="load()"></synchro-question-edit>
+  </mat-tab>
+
+  <mat-tab [label]="'BOT.PANEL.TAB.QUESTIONS_LIST' | translate">
+    <!-- <synchro-question-edit (refreshQuestionList)="load()"></synchro-question-edit> -->
+
+    <div
+      class="question-list-container"
+      *ngIf="!isEditQuestion"
+    >
+      @for (question of questions; track $index) {
+      <div class="question">
+        <div class="block">
+          <img
+            class="question-image"
+            *ngIf="question.image"
+            src="{{ question.image }}"
+            alt=""
+          />
+        </div>
+
+        <div class="block">
+          <div class="label">{{ 'BOT.PANEL.FIELD.LABEL.TEXT' | translate }}:</div>
+          <div>{{ question.text | defaultValue }}</div>
+        </div>
+
+        <div class="block">
+          <div class="label">{{ 'BOT.PANEL.FIELD.LABEL.OPTIONS' | translate }}:</div>
+          <synchro-question-option-list
+            [correctOption]="question.correctAnswer"
+            [options]="question.options"
+            [isEditMode]="false"
+          ></synchro-question-option-list>
+        </div>
+
+        <div class="block">
+          <div class="label">{{ 'BOT.PANEL.FIELD.LABEL.TOPICS' | translate }}:</div>
+          <synchro-tags [tags]="question.topics ?? []"></synchro-tags>
+        </div>
+
+        <div class="block">
+          <div class="label">{{ 'BOT.PANEL.FIELD.LABEL.CREATED_BY' | translate }}:</div>
+          <div>{{ question.createdBy | defaultValue }}</div>
+        </div>
+
+        <div class="block">
+          <div class="label">{{ 'BOT.PANEL.FIELD.LABEL.CREATED_AT' | translate }}:</div>
+          <div>{{ question.createdAt | date : 'dd/MM/yyyy HH:mm' }}</div>
+        </div>
+
+        <div class="block">
+          <div class="actions-container">
+            <button
+              class="edit"
+              (click)="editQuestion($index)"
+            >
+              <mat-icon
+                class="edit-icon"
+                [svgIcon]="'edit-pencil-icon'"
+              ></mat-icon>
+            </button>
+            <button
+              class="delete"
+              (click)="deleteQuestion(question.id, $index)"
+            >
+              <mat-icon
+                class="trash-icon"
+                [svgIcon]="'trash-icon'"
+              ></mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      } @empty {
+      <synchro-empty-list [imageName]="'not-found.png'"></synchro-empty-list> }
+    </div>
+
+    <synchro-question-edit
+      (refreshQuestionList)="load()"
+      [isCreateMode]="false"
+      [question]="currentQuestion"
+      *ngIf="isEditQuestion"
+      (onCloseQuestionEdit)="cancel()"
+    ></synchro-question-edit>
+  </mat-tab>
+</mat-tab-group>

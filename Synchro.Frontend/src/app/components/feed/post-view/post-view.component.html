@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="header-container">
+    <span class="header-title">{{ post.title | defaultValue }}</span>
+    @if (hasAdminRole && hasActions) {
+    <div class="actions-container">
+      <button
+        class="edit"
+        (click)="editPost()"
+      >
+        <mat-icon
+          class="edit-icon"
+          [svgIcon]="'edit-pencil-icon'"
+        ></mat-icon>
+      </button>
+      <button
+        class="delete"
+        (click)="deletePost()"
+      >
+        <mat-icon
+          class="trash-icon"
+          [svgIcon]="'trash-icon'"
+        ></mat-icon>
+      </button>
+    </div>
+    }
+  </div>
+
+  @if (post.description) {
+  <span class="description">{{ post.description | defaultValue }}</span>
+  } @if (hasAdminRole) {
+  <span class="description">{{ post.audienceType ?? AudienceTypeEnum.All | enumName : AudienceTypeEnum }}</span>
+  } @if (post.image) {
+  <div
+    class="post-image-container"
+    [ngStyle]="{ backgroundImage: 'url(' + post.image + ')' }"
+  >
+    <img
+      class="post-image"
+      [src]="post.image"
+      [alt]="'FEED.POST.IMAGE_ALT_TEXT' | translate"
+    />
+  </div>
+  }
+  <div class="body-container">
+    @if (post.content) {
+    <div
+      class="content"
+      [innerHTML]="post.content | defaultValue"
+    ></div>
+    }
+
+    <div class="footer">
+      @if (post.links) {
+      <synchro-link-list [links]="post.links"></synchro-link-list>
+      }
+      <div class="info">
+        @if (post.lastModifiedBy && post.lastModifiedAt) {
+        <span class="info-text">
+          @if (post.isAuthorVisible) {
+          <span
+            ><strong>{{ 'FEED.POST.LABEL.MODIFIED_BY' | translate }}:</strong> {{ post.lastModifiedBy }}
+          </span>
+          }
+          <strong>{{ 'FEED.POST.LABEL.MODIFIED_AT' | translate }}:</strong>
+          {{ post.lastModifiedAt | date : 'dd/MM/yyyy HH:mm' }}</span
+        >
+        }
+        <span class="info-text">
+          @if (post.isAuthorVisible) {
+          <span
+            ><strong>{{ 'FEED.POST.LABEL.CREATED_BY' | translate }}:</strong> {{ post.createdBy }}
+          </span>
+          }
+          <strong>{{ 'FEED.POST.LABEL.CREATED_AT' | translate }}:</strong>
+          {{ post.createdAt | date : 'dd/MM/yyyy HH:mm' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

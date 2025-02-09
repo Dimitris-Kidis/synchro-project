@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="header-container">
+    <span class="name">{{ group.name }} ({{ group.code | defaultValue }})</span>
+    <span class="counter">{{ group.participantsNumber | defaultValue }}/{{ group.participantsLimitNumber }}</span>
+  </div>
+  <div class="body-container">
+    <synchro-group-avatar
+      [group]="group"
+      [size]="ImageSizeEnum.Big"
+    ></synchro-group-avatar>
+    <div class="description">
+      {{ group.description }}
+    </div>
+  </div>
+  <button
+    class="join-btn"
+    (click)="sendRequestToJoinGroup()"
+    [disabled]="group.participantsNumber! >= group.participantsLimitNumber!"
+  >
+    {{ 'GROUPS.BUTTON.JOIN' | translate }}
+  </button>
+</div>

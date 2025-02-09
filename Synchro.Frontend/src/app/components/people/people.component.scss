@@ -1,0 +1,43 @@
+@import '../../../styles';
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  synchro-empty-list {
+    margin: 0 auto;
+  }
+
+  .person {
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: var(--bg-c-menu);
+    padding: 20px;
+    border-radius: $border-radius-medium;
+    box-shadow: $shadow-light;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    .label {
+      font-size: 12px;
+      display: block;
+      margin-bottom: 10px;
+      color: var(--language-switch-primary);
+    }
+  }
+}

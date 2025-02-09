@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="question-create">
+    <div class="row">
+      <textarea
+        class="question-text"
+        [(ngModel)]="question.text"
+        placeholder="{{ 'BOT.PANEL.FIELD.PLACEHOLDER.CREATE_QUESTION_TEXT' | translate }}"
+        [rows]="10"
+        [cols]="40"
+      ></textarea>
+
+      <span class="label">{{ 'BOT.PANEL.FIELD.LABEL.TOPICS' | translate }}</span>
+
+      <synchro-tags
+        [tags]="tags"
+        (refreshTags)="refreshTags($event)"
+        [isEditMode]="true"
+      ></synchro-tags>
+
+      <synchro-upload-image
+        [imageUrl]="question.image!"
+        (onFileUploaded)="setQuestionImage($event)"
+        [hasActions]="true"
+      ></synchro-upload-image>
+    </div>
+    <div class="row">
+      <synchro-question-option-list
+        [options]="question.options"
+        [correctOption]="question.correctAnswer ?? null"
+        (optionsChange)="setOptions($event)"
+        (correctOptionChange)="setCorrectOption($event)"
+      ></synchro-question-option-list>
+
+      <button
+        class="create-btn"
+        (click)="save()"
+      >
+        {{ (isCreateMode ? 'COMMON.CREATE' : 'COMMON.UPDATE') | translate }}
+      </button>
+      <button
+        *ngIf="!isCreateMode"
+        class="create-btn"
+        (click)="cancel()"
+      >
+        {{ 'COMMON.CANCEL' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

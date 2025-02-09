@@ -1,0 +1,7 @@
+<div class="container">
+  @for (webContent of webContents; track $index) {
+  <synchro-post-view [post]="webContent"></synchro-post-view>
+  } @empty {
+  <synchro-empty-list [imageName]="'newspaper.png'"></synchro-empty-list>
+  }
+</div>

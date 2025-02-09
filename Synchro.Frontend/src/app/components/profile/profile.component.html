@@ -1,0 +1,13 @@
+<div class="container">
+  @if (isEditMode) {
+  <synchro-profile-edit
+    [user]="user"
+    (setEditMode)="setEditMode($event)"
+  ></synchro-profile-edit>
+  } @else {
+  <synchro-profile-view
+    (setEditMode)="setEditMode($event)"
+    [user]="user"
+  ></synchro-profile-view>
+  }
+</div>

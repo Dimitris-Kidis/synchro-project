@@ -1,0 +1,14 @@
+@import '../../../styles/synchro-config';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .toggle-icon {
+    .theme-icon {
+      margin-top: 3px;
+      color: var(--t-c-disabled-grey);
+    }
+  }
+}

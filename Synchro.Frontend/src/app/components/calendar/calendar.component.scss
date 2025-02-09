@@ -1,0 +1,38 @@
+/* Стили для ячеек, которые будут подсвечиваться при наведении */
+.fc-daygrid-day-frame {
+  transition: background-color 0.3s ease !important; /* Плавный переход для фона */
+}
+
+/* Класс для ячеек с воскресеньем */
+.sunday-cell {
+  background-color: #f5f5f5 !important; /* Легкий фон для воскресений */
+}
+
+/* Класс для обычных дней недели */
+.weekday-cell {
+  background-color: #ffffff !important; /* Белый фон для будних дней */
+}
+
+/* Эффект подсветки при наведении на ячейки */
+.fc-daygrid-day-frame:hover {
+  background-color: #f0f8ff !important; /* Светлый фон при наведении */
+  cursor: pointer !important; /* Указатель мыши */
+}
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: rgb(229, 248, 225, 0.5) !important;
+}
+
+.fc .fc-col-header-cell-cushion {
+  /* needs to be same precedence */
+  padding-top: 5px; /* an override! */
+  padding-bottom: 5px; /* an override! */
+  cursor: pointer !important;
+}
+
+.fc-theme-standard td {
+  background-color: red !important;
+}
+
+.fc-daygrid-day {
+  background-color: aqua !important;
+}

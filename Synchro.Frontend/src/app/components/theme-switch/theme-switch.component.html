@@ -1,0 +1,18 @@
+<div class="container">
+  <i class="toggle-icon">
+    <mat-icon
+      class="theme-icon"
+      [svgIcon]="'sun-icon'"
+    ></mat-icon>
+  </i>
+  <synchro-toggle-switch
+    [checked]="isSwitchOn"
+    (toggle)="onSwitchToggle($event)"
+  ></synchro-toggle-switch>
+  <i class="toggle-icon">
+    <mat-icon
+      class="theme-icon"
+      [svgIcon]="'moon-icon'"
+    ></mat-icon>
+  </i>
+</div>

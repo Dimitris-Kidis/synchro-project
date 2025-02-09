@@ -1,0 +1,15 @@
+/* stylelint-disable selector-pseudo-element-no-unknown */
+::ng-deep .mat-mdc-tab-body-content {
+  overflow: visible !important;
+}
+
+::ng-deep .mat-mdc-tab-body-wrapper {
+  overflow: visible !important;
+}
+::ng-deep .mat-mdc-tab-body .mat-mdc-tab-body-active {
+  overflow: visible !important;
+}
+
+::ng-deep .mat-mdc-tab-body {
+  overflow: visible !important;
+}

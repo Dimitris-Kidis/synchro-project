@@ -1,0 +1,59 @@
+<synchro-header></synchro-header>
+
+<div class="auth-container">
+  <div class="type-writer">
+    <synchro-type-writer [staticText]="basicStaticText"></synchro-type-writer>
+  </div>
+  <div class="right-side">
+    <div class="auth-box">
+      <h2>{{ 'LOGIN.WELCOME_TO_SYNCHRO' | translate }}!</h2>
+
+      <form
+        name="form"
+        class="form"
+        #form="ngForm"
+        id="loginFormId"
+        autocomplete="off"
+      >
+        <div class="control">
+          <synchro-email-edit-control
+            [(emailAddress)]="signInInfo.email"
+            [config]="config.email"
+            [schema]="schema.email"
+            class="control-slim"
+          ></synchro-email-edit-control>
+        </div>
+
+        <div class="control">
+          <synchro-text-edit-control
+            [(value)]="signInInfo.password"
+            [config]="config.password"
+            [schema]="schema.password"
+            class="control-slim"
+          ></synchro-text-edit-control>
+        </div>
+
+        <div
+          [matTooltip]="'LOGIN.SIGNIN.TOOLTIP' | translate"
+          [matTooltipPosition]="'below'"
+          [matTooltipDisabled]="form.valid"
+        >
+          <button
+            class="auth-button"
+            (click)="login()"
+            [disabled]="isBusy || form.invalid"
+          >
+            {{ 'COMMON.SIGNIN' | translate }}
+          </button>
+        </div>
+      </form>
+
+      <p class="auth-footer">
+        {{ 'LOGIN.DONT_HAVE_ACCOUNT_YET' | translate }}
+        <span (click)="redirectToSignUp()">{{ 'LOGIN.JOIN_US' | translate }}</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<synchro-footer></synchro-footer>

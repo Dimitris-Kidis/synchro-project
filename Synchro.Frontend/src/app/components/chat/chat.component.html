@@ -1,0 +1,67 @@
+<!-- <div class="container">
+  <div class="chat-container">
+    <div class="chat-messages">
+      <div
+        *ngFor="let msg of messages"
+        class="message"
+      >
+        <span class="username">{{ msg.userName }}</span>
+        <span *ngIf="msg.message">:</span>
+        <span class="content">{{ msg.message }}</span>
+      </div>
+      <div #messagesEnd></div>
+    </div>
+
+    <div class="chat-input">
+      <input
+        [(ngModel)]="newMessage"
+        type="text"
+        placeholder="Введите сообщение..."
+        class="message-input"
+        (keyup.enter)="sendMessage()"
+      />
+      <button
+        (click)="sendMessage()"
+        class="send-button"
+      >
+        Отправить
+      </button>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="chat-container">
+    <div class="chat-messages">
+      <div
+        *ngFor="let msg of messages"
+        class="message"
+        [ngClass]="{
+          'from-user': msg.userId === userId && msg.messageType === MessageTypeEnum.Regular,
+          'from-others': msg.userId !== userId && msg.messageType === MessageTypeEnum.Regular,
+          common: msg.messageType === MessageTypeEnum.Joined
+        }"
+      >
+        <div class="message-header">{{ msg.userName }}</div>
+        <div class="message-content">{{ msg.message }}</div>
+      </div>
+      <div #messagesEnd></div>
+    </div>
+
+    <div class="chat-input">
+      <input
+        [(ngModel)]="newMessage"
+        type="text"
+        [placeholder]="'CHAT.INPUT.PLACEHOLDER' | translate"
+        class="message-input"
+        (keyup.enter)="sendMessage()"
+      />
+      <button
+        (click)="sendMessage()"
+        class="send-button"
+      >
+        <mat-icon [svgIcon]="'send-icon'"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

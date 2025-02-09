@@ -1,0 +1,22 @@
+<header class="header">
+  <div class="logo">
+    <span>{{ 'PROJECT.NAME' | translate }}</span>
+  </div>
+
+  <div class="auth-links">
+    <a
+      [routerLink]="'/login'"
+      [ngClass]="checkRoute('login') ? 'active' : 'inactive'"
+      >{{ 'COMMON.LOGIN' | translate }}</a
+    >
+    <a
+      [routerLink]="'/register'"
+      [ngClass]="checkRoute('register') ? 'active' : 'inactive'"
+      >{{ 'COMMON.REGISTER' | translate }}</a
+    >
+
+    <synchro-theme-switch></synchro-theme-switch>
+
+    <synchro-language-toggler></synchro-language-toggler>
+  </div>
+</header>

@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: start;
+  margin-top: 20px;
+  width: 100%;
+
+  synchro-request-item {
+    width: 100%;
+  }
+
+  .placeholder {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 180px;
+      margin-bottom: 20px;
+    }
+  }
+}

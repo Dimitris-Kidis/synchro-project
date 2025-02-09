@@ -1,0 +1,15 @@
+<div class="container">
+  <p>
+    <span class="static">{{ staticText | translate }}</span>
+    <span
+      class="typed-text"
+      [ngClass]="currentWordClasses"
+    >
+      {{ displayText }}
+    </span>
+    <span
+      class="cursor"
+      [class.typing]="cursorClass"
+    ></span>
+  </p>
+</div>

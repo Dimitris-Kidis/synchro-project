@@ -1,0 +1,227 @@
+@import '../../../../styles';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+
+  .personal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .avatar {
+      margin-bottom: 20px;
+    }
+
+    .input {
+      border: 1px solid var(--language-switch-primary);
+      border-radius: $border-radius-medium;
+      padding: 7px 10px;
+
+      .label {
+        font-size: 10px;
+        display: block;
+        margin-bottom: 5px;
+        color: var(--language-switch-primary);
+      }
+    }
+  }
+
+  .other {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      .edit-btn {
+        border: 0px solid;
+        color: var(--t-c-white);
+        padding: 7px 10px;
+        min-width: 100px;
+        font-weight: 700;
+        background-color: var(--bg-c-accent);
+        border-radius: $border-radius-medium;
+        transition: filter 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          filter: brightness(90%);
+        }
+      }
+    }
+
+    .secret-key-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+
+      span {
+        font-family: monospace;
+        font-weight: bold;
+      }
+
+      .toggle-visibility {
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+
+        mat-icon {
+          font-size: 20px;
+          color: var(--t-c-primary);
+          cursor: pointer;
+        }
+
+        &:hover mat-icon {
+          color: var(--t-c-accent);
+        }
+
+        .closed {
+          color: var(--t-c-error);
+        }
+      }
+    }
+
+    .input {
+      border: 1px solid var(--language-switch-primary);
+      border-radius: $border-radius-medium;
+      padding: 7px 10px;
+
+      .label {
+        font-size: 10px;
+        display: block;
+        margin-bottom: 5px;
+        color: var(--language-switch-primary);
+      }
+    }
+
+    .regenerate-key {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdown-button {
+  padding: 10px;
+  background-color: transparent;
+  color: var(--t-c-accent);
+  border: 1px solid var(--t-c-accent);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: brightness(70%);
+  }
+
+  .arrow {
+    margin-left: 10px;
+  }
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #f1f1f1;
+    }
+
+    &:active {
+      background-color: #e2e2e2;
+    }
+  }
+}
+
+.request-text {
+  padding: 15px 2px;
+  width: 100%;
+  resize: none;
+  background-color: transparent;
+  border: none;
+
+  box-sizing: border-box;
+  overflow: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.send-request-btn {
+  border: 0px solid;
+  color: var(--t-c-white);
+  padding: 7px 10px;
+  min-width: 100px;
+  font-weight: 700;
+  background-color: var(--bg-c-accent);
+  border-radius: $border-radius-medium;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  &:disabled {
+    background-color: var(--bg-c-disabled);
+    color: var(--t-c-disabled);
+    cursor: unset;
+  }
+}
+
+.request-input {
+  border: 1px solid var(--language-switch-primary);
+  border-radius: $border-radius-medium;
+  padding: 7px 10px;
+  display: flex;
+  flex-direction: column;
+
+  .request-label {
+    font-size: 10px;
+    display: block;
+    margin-bottom: 5px;
+    color: var(--language-switch-primary);
+  }
+}

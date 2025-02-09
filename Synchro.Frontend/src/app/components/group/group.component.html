@@ -1,0 +1,13 @@
+<div class="container">
+  @if (isEditMode) {
+  <synchro-group-edit
+    [group]="group"
+    (setEditMode)="setEditMode($event)"
+  ></synchro-group-edit>
+  } @else {
+  <synchro-group-view
+    (setEditMode)="setEditMode($event)"
+    [group]="group"
+  ></synchro-group-view>
+  }
+</div>

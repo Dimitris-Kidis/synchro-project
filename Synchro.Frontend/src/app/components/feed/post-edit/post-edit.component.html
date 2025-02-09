@@ -1,0 +1,84 @@
+<div class="container">
+  <span class="header">{{
+    (isCreateMode ? 'FEED.POST.EDIT.HEADER.CREATE' : 'FEED.POST.EDIT.HEADER.UPDATE') | translate
+  }}</span>
+
+  <form
+    #form="ngForm"
+    class="form"
+    name="form"
+    autocomplete="off"
+    (ngSubmit)="(form.form.valid)"
+  >
+    <div class="row">
+      <synchro-text-edit-control
+        [(value)]="post.title"
+        [config]="config.title"
+        [schema]="schema.title"
+        class="control"
+      ></synchro-text-edit-control>
+
+      <synchro-text-edit-control
+        [(value)]="post.description"
+        [config]="config.description"
+        [schema]="schema.description"
+        class="control"
+      ></synchro-text-edit-control>
+
+      <synchro-combo-edit-control
+        [config]="config.audienceType"
+        [schema]="schema.audienceType"
+        [(value)]="post.audienceType"
+        class="control"
+      ></synchro-combo-edit-control>
+    </div>
+
+    <div class="content">
+      <synchro-upload-image
+        [imageUrl]="post.image!"
+        (onFileUploaded)="setPostImage($event)"
+        [hasActions]="true"
+      ></synchro-upload-image>
+
+      <quill-editor
+        [(ngModel)]="post.content"
+        [modules]="quillConfig.modules!"
+        [placeholder]="quillConfig.placeholder!"
+        [readOnly]="quillConfig.readOnly!"
+        [format]="quillConfig.format!"
+        class="editor"
+        name="content"
+      ></quill-editor>
+    </div>
+
+    <div class="">
+      <synchro-checkbox-edit-control
+        [(value)]="post.isAuthorVisible"
+        [config]="config.isAuthorVisible"
+        [schema]="schema.isAuthorVisible"
+      ></synchro-checkbox-edit-control>
+
+      <synchro-link-list
+        [links]="post.links ?? []"
+        [isEditMode]="true"
+        (refreshLinks)="post.links = $event"
+      ></synchro-link-list>
+    </div>
+
+    <div class="actions">
+      <button
+        class="cancel-btn"
+        (click)="cancel()"
+      >
+        {{ 'COMMON.CANCEL' | translate }}
+      </button>
+      <button
+        class="save-btn"
+        (click)="save()"
+        [disabled]="isBusy || form.invalid"
+      >
+        {{ (isCreateMode ? 'COMMON.CREATE' : 'COMMON.UPDATE') | translate }}
+      </button>
+    </div>
+  </form>
+</div>

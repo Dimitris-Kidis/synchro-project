@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="search-container">
+    <form
+      #form="ngForm"
+      class="search"
+      (ngSubmit)="form.form.valid && search()"
+    >
+      <synchro-text-edit-control
+        [config]="config.searchInput"
+        [schema]="schema.searchInput"
+        [(value)]="queryFilters.searchInput"
+        class="search-input"
+      ></synchro-text-edit-control>
+
+      <button
+        type="submit"
+        class="search-button"
+        mat-flat-button
+      >
+        <span>{{ 'COMMON.SEARCH' | translate }}</span>
+        <mat-icon class="search-button-icon">search</mat-icon>
+      </button>
+    </form>
+    @if (groups.length) {
+    <div class="total-results">{{ 'GROUPS.SEARCH.RESULT.NUMBER' | translate }}: {{ totalCount }}</div>
+    }
+  </div>
+  <div class="search-results">
+    @for (group of groups; track $index) {
+    <synchro-group-card [group]="group"></synchro-group-card>
+    } @empty {
+    <div class="empty-list">
+      <img
+        class="empty-image"
+        src="../../../assets/images/group-empty-list.png"
+        width="100px"
+        alt=""
+      />
+      <span class="empty-text"> {{ 'COMMON.LIST.EMPTY' | translate }}</span>
+    </div>
+    }
+  </div>
+</div>

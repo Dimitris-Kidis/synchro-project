@@ -1,0 +1,39 @@
+.divider {
+  background-color: #ccc;
+  margin: 0;
+
+  &.horizontal {
+    height: 1px;
+    width: 100%;
+  }
+
+  &.vertical {
+    width: 1px;
+    height: 100%;
+  }
+
+  &.small {
+    height: 1px;
+    width: 2rem;
+  }
+
+  &.medium {
+    height: 1px;
+    width: 4rem;
+  }
+
+  &.large {
+    height: 1px;
+    width: 6rem;
+  }
+
+  &.x-large {
+    height: 1px;
+    width: 8rem;
+  }
+
+  &.xx-large {
+    height: 1px;
+    width: 10rem;
+  }
+}

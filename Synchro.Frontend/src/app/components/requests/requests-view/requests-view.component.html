@@ -1,0 +1,16 @@
+<div class="container">
+  @for (request of requests; track $index) {
+  <synchro-request-item
+    (refreshRequests)="refresh()"
+    [request]="request"
+  ></synchro-request-item>
+  } @empty {
+  <div class="placeholder">
+    <img
+      src="../../../../assets/images/empty-folder.png"
+      alt=""
+    />
+    <div class="placeholder-text">{{ 'COMMON.LIST.EMPTY' | translate }}</div>
+  </div>
+  }
+</div>

@@ -1,0 +1,31 @@
+<div
+  class="text-editor-wrapper"
+  [class.read-only]="config.readOnly"
+>
+  <quill-editor
+    [(ngModel)]="content"
+    [modules]="config.modules"
+    [placeholder]="config.placeholder"
+    [readOnly]="config.readOnly"
+    [format]="config.format"
+    (onContentChanged)="contentChanged($event)"
+    class="editor"
+  ></quill-editor>
+
+  <div
+    *ngIf="config?.showCharacterCount"
+    class="char-count-wrapper"
+  >
+    <div class="char-count">
+      <span>{{ characterCount }}</span>
+      <span *ngIf="config?.characterLimit != null && config.characterLimit! > 0"> / {{ config.characterLimit }}</span>
+    </div>
+
+    <div
+      *ngIf="isCharacterLimitExceeded()"
+      class="limit-exceeded"
+    >
+      <span>Character limit exceeded! You can only delete content.</span>
+    </div>
+  </div>
+</div>

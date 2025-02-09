@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="personal-info">
+    <div class="avatar">
+      <synchro-upload-image
+        [imageUrl]="group.image!"
+        (onFileUploaded)="setGroupImage($event)"
+        [documentType]="DocumentTypeEnum.GroupAvatar"
+        [hasActions]="true"
+      ></synchro-upload-image>
+    </div>
+  </div>
+
+  <div class="other">
+    <div class="row">
+      <div class="input">
+        <label class="label">{{ 'PROFILE.EDIT.FIELD.BASIC_INFO' | translate }}</label>
+
+        <form
+          name="form"
+          class="form"
+          #form="ngForm"
+          id="basicInfoId"
+          autocomplete="off"
+        >
+          <div class="control">
+            <synchro-text-edit-control
+              [(value)]="group.name"
+              [config]="config.name"
+              [schema]="schema.name"
+              class="control-slim"
+            ></synchro-text-edit-control>
+          </div>
+
+          <div class="control">
+            <synchro-text-edit-control
+              [(value)]="group.code"
+              [config]="config.code"
+              [schema]="schema.code"
+              class="control-slim"
+            ></synchro-text-edit-control>
+          </div>
+
+          <div class="control">
+            <synchro-text-edit-control
+              [(value)]="group.description"
+              [config]="config.description"
+              [schema]="schema.description"
+              class="control-slim"
+            ></synchro-text-edit-control>
+          </div>
+
+          <div class="control">
+            <synchro-number-edit-control
+              [(value)]="group.participantsLimitNumber"
+              [config]="config.participantsLimitNumber"
+              [schema]="schema.participantsLimitNumber"
+              [allowZero]="false"
+              class="control-slim"
+            ></synchro-number-edit-control>
+          </div>
+
+          <div class="button-container">
+            <button
+              class="cancel-btn"
+              (click)="cancel()"
+            >
+              {{ 'COMMON.CANCEL' | translate }}
+            </button>
+            <button
+              class="save-btn"
+              (click)="save()"
+              [disabled]="isBusy || form.invalid"
+            >
+              {{ 'COMMON.SAVE' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
