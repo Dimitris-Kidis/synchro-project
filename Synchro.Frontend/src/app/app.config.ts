@@ -49,12 +49,12 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     provideAppInitializer(() => {
-        const initializerFn = (initializeUser)(inject(CurrentUserProvider));
-        return initializerFn();
-      }),
+      const initializerFn = initializeUser(inject(CurrentUserProvider));
+      return initializerFn();
+    }),
     provideAppInitializer(() => {
-        const initializerFn = (initializeSignalR)(inject(SignalRService));
-        return initializerFn();
-      }),
+      const initializerFn = initializeSignalR(inject(SignalRService));
+      return initializerFn();
+    }),
   ],
 };

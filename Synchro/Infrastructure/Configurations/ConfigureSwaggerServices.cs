@@ -18,7 +18,7 @@ namespace Synchro.Infrastructure.Configurations
                     Contact = new OpenApiContact
                     {
                         Name = "A. C.",
-                        Url = new Uri("https://google.com")
+                        Url = new Uri("https://utm.md/")
                     },
                 });
 

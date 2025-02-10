@@ -8,10 +8,9 @@ describe('ThemeSwitchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ThemeSwitchComponent]
-    })
-    .compileComponents();
-    
+      imports: [ThemeSwitchComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ThemeSwitchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

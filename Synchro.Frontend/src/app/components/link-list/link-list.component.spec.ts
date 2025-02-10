@@ -8,10 +8,9 @@ describe('LinkListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LinkListComponent]
-    })
-    .compileComponents();
-    
+      imports: [LinkListComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(LinkListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

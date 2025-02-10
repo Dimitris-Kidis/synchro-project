@@ -8,10 +8,9 @@ describe('HtmlViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HtmlViewerComponent]
-    })
-    .compileComponents();
-    
+      imports: [HtmlViewerComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(HtmlViewerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

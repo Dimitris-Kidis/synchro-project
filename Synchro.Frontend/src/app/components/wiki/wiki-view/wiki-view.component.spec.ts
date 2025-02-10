@@ -8,10 +8,9 @@ describe('WikiViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WikiViewComponent]
-    })
-    .compileComponents();
-    
+      imports: [WikiViewComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(WikiViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

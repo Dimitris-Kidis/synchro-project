@@ -8,10 +8,9 @@ describe('GroupViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GroupViewComponent]
-    })
-    .compileComponents();
-    
+      imports: [GroupViewComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(GroupViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
