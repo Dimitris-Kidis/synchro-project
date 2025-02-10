@@ -1,4 +1,4 @@
-﻿using Core.Services.Repositories.CurrentUserProvider;
+﻿using Core.Providers.CurrentUserProvider;
 
 namespace Synchro.Infrastructure.Configurations
 {

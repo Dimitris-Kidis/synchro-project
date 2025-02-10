@@ -10,6 +10,5 @@ namespace Synchro.Infrastructure.Configurations
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("connectionString"));
             });
-
     }
 }
