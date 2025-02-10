@@ -8,10 +8,10 @@ namespace Core.Domain.Entities
     {
         [Timestamp]
         public byte[] RowVersion { get; set; }
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string Password { get; set; }
-        public string LastName { get; set; }
+        public required string Email { get; set; }
+        public required string FirstName { get; set; }
+        public required string Password { get; set; }
+        public required string LastName { get; set; }
         public int Age { get; set; }
         public string? Image { get; set; }
         public string? SecretKey { get; set; }
@@ -22,8 +22,8 @@ namespace Core.Domain.Entities
         public string? LastModifiedBy { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? LastModifiedAt { get; set; }
-        public ICollection<WebContent> WebContents { get; set; }
-        public ICollection<Request> Requests { get; set; }
-
+        public ICollection<WebContent> WebContents { get; set; } = [];
+        public ICollection<Request> Requests { get; set; } = [];
+        public ICollection<WorkItem> WorkItems { get; set; } = [];
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Answer : BaseEntity
     {
-        public string UserAnswer { get; set; }
+        public required string UserAnswer { get; set; }
         public bool IsCorrect { get; set; }
         public Guid UserId { get; set; }
         public Guid QuestionId { get; set; }

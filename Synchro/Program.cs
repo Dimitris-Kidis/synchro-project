@@ -1,4 +1,5 @@
 using Synchro.ExceptionFilter;
+using Synchro.Hub;
 using Synchro.Identity;
 using Synchro.Infrastructure.Configurations;
 
@@ -36,9 +37,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options => options.InjectStylesheet("/swagger-ui/custom.css"));
 }
 
-app.UseRouting();
-
 app.UseCors("AllowAllOrigins");
+
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -48,7 +49,7 @@ app.UseHttpsRedirection();
 app.UseErrorHandlingMiddleware();
 app.UseDbTransactionMiddleware();
 
-//app.MapHub<ChatHub>("/chatHub");
+app.MapHub<ChatHub>("/chatHub");
 app.MapControllers();
 
 await app.RunAsync();

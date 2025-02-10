@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../../../shared/shared.module';
 import { PopoverModule } from '../../components/popover/popover.module';
-import { AbbreviationDirective } from '../../directives/abbreviation.directive';
 import { NumberPrecisionValidatorDirective } from '../../validators/number-precision-validator.directive';
 import { CONTROL_CONTAINER_PROVIDER } from '../control-container-provider';
 import { INumberEditControlSchema } from './number-edit-control.schema';
@@ -24,7 +23,6 @@ import { INumberEditControlSchema } from './number-edit-control.schema';
     MatFormFieldModule,
     MatInputModule,
     NumberPrecisionValidatorDirective,
-    AbbreviationDirective,
   ],
 })
 export class NumberEditControlComponent {

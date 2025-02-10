@@ -4,7 +4,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DefaultValuePipe } from '../../../../pipes/default-value.pipe';
 import { SharedModule } from '../../../../shared/shared.module';
 import { CONTROL_CONTAINER_PROVIDER } from '../../control-container-provider';
 import { ICheckboxEditControlSchema } from './checkbox-edit-control.schema';
@@ -13,7 +12,7 @@ import { ICheckboxEditControlSchema } from './checkbox-edit-control.schema';
   selector: 'synchro-checkbox-edit-control',
   templateUrl: './checkbox-edit-control.component.html',
   standalone: true,
-  imports: [SharedModule, DefaultValuePipe, FormsModule, MatCheckboxModule, MatFormFieldModule],
+  imports: [SharedModule, FormsModule, MatCheckboxModule, MatFormFieldModule],
   viewProviders: [CONTROL_CONTAINER_PROVIDER],
 })
 export class CheckboxEditControlComponent<T extends boolean | null | undefined> implements OnInit {

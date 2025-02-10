@@ -6,12 +6,12 @@
         {
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder =>
+                options.AddPolicy("AllowAllOrigins", builder =>
                 {
                     builder.WithOrigins("http://localhost:4200")
-                    .AllowCredentials()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                           .AllowCredentials()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
                 });
             });
 

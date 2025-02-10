@@ -9,13 +9,11 @@ import { PageSpinnerService } from '../../common/components/page-spinner/page-sp
 import { DisplayErrorHelper } from '../../common/helpers/display-error.helper';
 import { EmptyListComponent } from '../empty-list/empty-list.component';
 import { PostViewComponent } from '../feed/post-view/post-view.component';
-import { LanguageTogglerComponent } from '../language-toggler/language-toggler.component';
-import { ToggleSwitchComponent } from '../toggle-switch/toggle-switch.component';
 
 @Component({
   selector: 'synchro-dashboard',
   standalone: true,
-  imports: [LanguageTogglerComponent, ToggleSwitchComponent, PostViewComponent, EmptyListComponent],
+  imports: [PostViewComponent, EmptyListComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

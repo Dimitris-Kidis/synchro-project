@@ -9,15 +9,12 @@ import { CalendarEventDto } from '../../../../models/calendar-event';
 import { CurrentUserProvider } from '../../../../providers/current-user.provider';
 import { CalendarEventsService } from '../../../../services/calendar-event.service';
 import { PageSpinnerService } from '../../../common/components/page-spinner/page-spinner.service';
-import { CheckboxEditControlComponent } from '../../../common/controls/checkbox/checkbox-edit-control/checkbox-edit-control.component';
-import { ComboEditControlComponent } from '../../../common/controls/combo-edit-control/combo-edit-control.component';
 import { DateEditControlComponent } from '../../../common/controls/date-edit-control/date-edit-control.component';
 import { TextEditControlComponent } from '../../../common/controls/text-edit-control/text-edit-control.component';
 import { DisplayErrorHelper } from '../../../common/helpers/display-error.helper';
 import { RoleEnum } from '../../../enums/role.enum';
 import { LinkListComponent } from '../../link-list/link-list.component';
 import { EditorConfig } from '../../text-editor/editor.config';
-import { UploadImageComponent } from '../../upload-image/upload-image.component';
 import { IEventEditConfig, getEventEditConfig } from './event-edit.config';
 import { EventEditQuillConfig } from './event-edit.quill.config';
 import { IEventEditSchema, getEventEditSchema } from './event-edit.schema';
@@ -29,9 +26,6 @@ import { IEventEditSchema, getEventEditSchema } from './event-edit.schema';
     TranslateModule,
     FormsModule,
     TextEditControlComponent,
-    ComboEditControlComponent,
-    UploadImageComponent,
-    CheckboxEditControlComponent,
     QuillModule,
     CommonModule,
     LinkListComponent,

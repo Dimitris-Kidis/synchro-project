@@ -15,6 +15,7 @@ namespace Core.Domain
         public DbSet<WikiPage> WikiPages { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<WorkItem> WorkItems { get; set; }
 
         public SynchroDbContext() { }
 

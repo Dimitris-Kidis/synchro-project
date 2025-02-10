@@ -24,7 +24,6 @@ import { IGroupEditSchema, getGroupEditSchema } from './group-edit.schema';
   standalone: true,
   imports: [
     PageSpinnerModule,
-    UserAvatarComponent,
     TranslateModule,
     MatIconModule,
     CommonModule,
