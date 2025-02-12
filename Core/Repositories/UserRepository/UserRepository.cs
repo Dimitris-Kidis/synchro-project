@@ -2,6 +2,7 @@
 using Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using Z.EntityFramework.Plus;
 
 namespace Core.Repositories.UserRepository;
 
@@ -12,6 +13,11 @@ public class UserRepository(SynchroDbContext dbContext) : IUserRepository
     public Task<bool> ExistsAsync(string email, CancellationToken cancellationToken)
     {
         return _dbContext.Users.AsNoTracking().AnyAsync(x => x.Email == email, cancellationToken);
+    }
+
+    public Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
+    {
+        return _dbContext.Users.AsNoTracking().AnyAsync(x => x.Id == id, cancellationToken);
     }
 
     public async Task<List<User>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -34,6 +40,11 @@ public class UserRepository(SynchroDbContext dbContext) : IUserRepository
         return await _dbContext.Users.FindAsync([id], cancellationToken);
     }
 
+    public IQueryable<User> GetAll()
+    {
+        return _dbContext.Users;
+    }
+
     public async Task<User> AddAsync(User entity, CancellationToken cancellationToken = default)
     {
         await _dbContext.Users.AddAsync(entity, cancellationToken);
@@ -46,6 +57,11 @@ public class UserRepository(SynchroDbContext dbContext) : IUserRepository
         _dbContext.Users.Update(entity);
         await SaveAsync(cancellationToken);
         return entity;
+    }
+
+    public virtual async Task<int> UpdateAsync(Expression<Func<User, bool>> predicate, Expression<Func<User, User>> updateFactory, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Set<User>().Where(predicate).UpdateAsync(updateFactory, cancellationToken);
     }
 
     public async Task DeleteAsync(User entity, CancellationToken cancellationToken = default)

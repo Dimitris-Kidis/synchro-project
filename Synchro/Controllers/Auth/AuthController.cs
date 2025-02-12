@@ -1,6 +1,7 @@
 ﻿using Commands.Commands.Auth.ChangePassword;
 using Commands.Commands.Auth.Login;
 using Commands.Commands.Auth.Registration;
+using Commands.Commands.Auth.SecretKey;
 using Core.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -50,6 +51,14 @@ namespace Synchro.Controllers.Auth
             await _mediator.Send(command);
 
             return Ok();
+        }
+
+        [HttpGet("secret-key")]
+        public async Task<IActionResult> UpdateSecretKey()
+        {
+            var result = await _mediator.Send(new RegenerateSecretKeyCommand());
+
+            return Ok(result);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Commands.Commands.Auth.Registration;
 using MediatR;
+using Queries.Queries.User.GetUser;
 using System.Reflection;
 
 namespace Synchro.Infrastructure.Configurations
@@ -8,6 +9,7 @@ namespace Synchro.Infrastructure.Configurations
     {
         public static IServiceCollection AddMediatRConfigs(this IServiceCollection services)
         {
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetUserQueryHandler).GetTypeInfo().Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(RegistrationCommandHandler).GetTypeInfo().Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 

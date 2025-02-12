@@ -2,6 +2,7 @@
 using Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using Z.EntityFramework.Plus;
 
 namespace Core.Repositories.SynchroRepository
 {
@@ -34,6 +35,11 @@ namespace Core.Repositories.SynchroRepository
             Audit();
             await _dbContext.SaveChangesAsync(cancellationToken);
             return entity;
+        }
+
+        public virtual async Task<int> UpdateAsync(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateFactory, CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Set<TEntity>().Where(predicate).UpdateAsync(updateFactory, cancellationToken);
         }
 
         public async Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)

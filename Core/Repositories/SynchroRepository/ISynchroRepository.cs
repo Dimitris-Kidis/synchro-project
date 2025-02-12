@@ -9,6 +9,7 @@ namespace Core.Repositories.SynchroRepository
         Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
         Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task<int> UpdateAsync(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateFactory, CancellationToken cancellationToken = default);
         Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
         Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
         IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);
