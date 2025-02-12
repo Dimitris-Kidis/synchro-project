@@ -1,5 +1,5 @@
 ﻿using Core.Domain;
-using Core.Domain.Entities;
+using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Z.EntityFramework.Plus;
@@ -7,7 +7,7 @@ using Z.EntityFramework.Plus;
 namespace Core.Repositories.SynchroRepository
 {
     public class SynchroRepository<TEntity>(SynchroDbContext dbContext) : ISynchroRepository<TEntity>
-        where TEntity : BaseEntity
+        where TEntity : class, IBaseEntity
     {
         protected readonly SynchroDbContext _dbContext = dbContext;
 
@@ -105,7 +105,7 @@ namespace Core.Repositories.SynchroRepository
         private void Audit()
         {
             var now = DateTimeOffset.UtcNow;
-            var entries = _dbContext.ChangeTracker.Entries<BaseEntity>().Where(x => x.State is EntityState.Added or EntityState.Modified);
+            var entries = _dbContext.ChangeTracker.Entries<IBaseEntity>().Where(x => x.State is EntityState.Added or EntityState.Modified);
 
             foreach (var entry in entries)
             {

@@ -1,10 +1,13 @@
-﻿using static Common.Enums.RequestStatusTypeEnum;
+﻿using Core.Interfaces;
+using System.ComponentModel.DataAnnotations;
+using static Common.Enums.RequestStatusTypeEnum;
 using static Common.Enums.RequestTypeEnum;
 
 namespace Core.Domain.Entities
 {
-    public class Request : BaseEntity
+    public class Request : IBaseEntity
     {
+        public Guid Id { get; set; }
         public string? Text { get; set; }
         public RequestType Type { get; set; }
         public RequestStatusType Status { get; set; }
@@ -16,5 +19,11 @@ namespace Core.Domain.Entities
         public User Recipient { get; set; }
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
+        public string CreatedBy { get; set; }
+        public string? LastModifiedBy { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? LastModifiedAt { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

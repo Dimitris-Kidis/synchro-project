@@ -1,9 +1,9 @@
-﻿using Core.Domain.Entities;
+﻿using Core.Interfaces;
 using System.Linq.Expressions;
 
 namespace Core.Repositories.SynchroRepository
 {
-    public interface ISynchroRepository<TEntity> where TEntity : BaseEntity
+    public interface ISynchroRepository<TEntity> where TEntity : IBaseEntity
     {
         Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default);
         Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);

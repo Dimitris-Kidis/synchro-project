@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Core.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using static Common.Enums.RoleTypeEnum;
 
 namespace Core.Domain.Entities
 {
-    public class User : IdentityUser<Guid>
+    public class User : IdentityUser<Guid>, IBaseEntity
     {
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
+        public Guid Id { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string Password { get; set; }
@@ -22,6 +22,8 @@ namespace Core.Domain.Entities
         public string? LastModifiedBy { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? LastModifiedAt { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
         public ICollection<WebContent> WebContents { get; set; } = [];
         public ICollection<Request> Requests { get; set; } = [];
         public ICollection<WorkItem> WorkItems { get; set; } = [];

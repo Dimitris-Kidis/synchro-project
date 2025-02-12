@@ -1,7 +1,11 @@
-﻿namespace Core.Domain.Entities
+﻿using Core.Interfaces;
+using System.ComponentModel.DataAnnotations;
+
+namespace Core.Domain.Entities
 {
-    public class Group : BaseEntity
+    public class Group : IBaseEntity
     {
+        public Guid Id { get; set; }
         public required string Name { get; set; }
         public string? Description { get; set; }
         public string? Image { get; set; }
@@ -17,5 +21,11 @@
         public ICollection<StorageFile> StorageFiles { get; set; } = [];
         public ICollection<Request> Requests { get; set; } = [];
         public ICollection<WorkItem> WorkItems { get; set; } = [];
+        public string CreatedBy { get; set; }
+        public string? LastModifiedBy { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? LastModifiedAt { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

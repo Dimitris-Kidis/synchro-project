@@ -1,10 +1,10 @@
 ﻿using Common.Exceptions;
-using Core.Domain.Entities;
+using Core.Interfaces;
 using Core.Repositories.SynchroRepository;
 
 namespace Core.Services.EntityValidator;
 
-public sealed class EntityValidatorService<TEntity>(ISynchroRepository<TEntity> synchroRepository) : IEntityValidatorService<TEntity> where TEntity : BaseEntity
+public sealed class EntityValidatorService<TEntity>(ISynchroRepository<TEntity> synchroRepository) : IEntityValidatorService<TEntity> where TEntity : IBaseEntity
 {
     private readonly ISynchroRepository<TEntity> synchroRepository = synchroRepository ?? throw new ArgumentNullException(nameof(synchroRepository));
 
