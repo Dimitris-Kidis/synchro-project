@@ -20,7 +20,6 @@ builder.Services
     .AddMediatRConfigs()
     .AddControllers(option => option.Filters.Add(typeof(ApiExceptionFilter)))
     .AddValidators();
-//.AddAzureBlobStorage(builder)
 //.AddTelegramClient()
 
 builder.Services.AddSignalR();
@@ -29,6 +28,11 @@ builder.Services.AddIdentityConfiguration();
 builder.Services.AddJwtAuthentication();
 
 builder.Services.AddSignalR();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

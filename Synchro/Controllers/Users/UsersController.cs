@@ -1,8 +1,10 @@
-﻿using Commands.Commands.Users.UpdateUserRole;
+﻿using Commands.Commands.Users.UpdateUser;
+using Commands.Commands.Users.UpdateUserRole;
 using Core.Providers.CurrentUserProvider;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Queries.User.GetUser;
+using Queries.Queries.User.GetUsersPaginated;
 
 namespace Synchro.Controllers.Users
 {
@@ -39,11 +41,27 @@ namespace Synchro.Controllers.Users
         }
 
         [HttpPut("role")]
-        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRoleCommand command)
+        public async Task<IActionResult> UpdateUserRole([FromBody] UpdateUserRoleCommand command)
         {
             await _mediator.Send(command);
 
             return NoContent();
+        }
+
+        [HttpPut("")]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
+        {
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpPost("paginated")]
+        public async Task<IActionResult> GetUsersSearchPaginated([FromBody] GetUsersPaginatedQuery command)
+        {
+            var result = await _mediator.Send(command);
+
+            return Ok(result);
         }
     }
 }

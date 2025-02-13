@@ -32,6 +32,12 @@ namespace Core.Providers.CurrentUserProvider
             return user == null ? null : $"{user.FirstName} {user.LastName}".Trim();
         }
 
+        public async Task<Guid?> GetCurrentUserGroupIdAsync()
+        {
+            var user = await GetCurrentUserAsync();
+            return user?.GroupId;
+        }
+
         public async Task<RoleType?> GetCurrentUserRoleAsync()
         {
             var user = await GetCurrentUserAsync();

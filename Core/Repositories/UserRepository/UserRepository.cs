@@ -35,9 +35,9 @@ public class UserRepository(SynchroDbContext dbContext) : IUserRepository
         return await query.FirstOrDefaultAsync(cancellationToken);
     }
 
-    public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<User> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Users.FindAsync([id], cancellationToken);
+        return await _dbContext.Users.SingleAsync(x => x.Id == id, cancellationToken);
     }
 
     public IQueryable<User> GetAll()
@@ -57,6 +57,16 @@ public class UserRepository(SynchroDbContext dbContext) : IUserRepository
         _dbContext.Users.Update(entity);
         await SaveAsync(cancellationToken);
         return entity;
+    }
+
+    public User Update(User entity)
+    {
+        _dbContext.Users.Update(entity);
+        return entity;
+    }
+    public void Save()
+    {
+        _dbContext.SaveChanges();
     }
 
     public virtual async Task<int> UpdateAsync(Expression<Func<User, bool>> predicate, Expression<Func<User, User>> updateFactory, CancellationToken cancellationToken = default)

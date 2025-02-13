@@ -8,6 +8,7 @@ namespace Core.Providers.CurrentUserProvider
         Guid? GetCurrentUserId();
         Task<User?> GetCurrentUserAsync();
         Task<string?> GetCurrentUserFullNameAsync();
+        Task<Guid?> GetCurrentUserGroupIdAsync();
         Task<RoleType?> GetCurrentUserRoleAsync();
         Task<bool> IsInRoleAsync(params RoleType[] roles);
     }

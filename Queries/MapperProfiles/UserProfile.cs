@@ -9,6 +9,9 @@ namespace Queries.MapperProfiles
         public UserProfile()
         {
             CreateMap<User, UserDto>();
+
+            CreateMap<User, UserPaginatedDto>()
+                .ForMember(x => x.GroupInfo, opt => opt.MapFrom(x => x.Group));
         }
     }
 }
