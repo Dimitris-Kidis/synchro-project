@@ -3,8 +3,8 @@ using Commands.Commands.Users.UpdateUserRole;
 using Core.Providers.CurrentUserProvider;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Queries.Queries.User.GetUser;
-using Queries.Queries.User.GetUsersPaginated;
+using Queries.Queries.Users.GetUser;
+using Queries.Queries.Users.GetUsersPaginated;
 
 namespace Synchro.Controllers.Users
 {

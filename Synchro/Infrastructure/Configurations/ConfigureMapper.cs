@@ -1,5 +1,5 @@
 ﻿using Commands.Commands.Auth.Registration;
-using Queries.Queries.User.GetUser;
+using Queries.Queries.Users.GetUser;
 
 namespace Synchro.Infrastructure.Configurations
 {

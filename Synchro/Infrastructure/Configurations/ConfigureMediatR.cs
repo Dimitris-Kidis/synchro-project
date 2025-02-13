@@ -1,6 +1,6 @@
 ﻿using Commands.Commands.Auth.Registration;
 using MediatR;
-using Queries.Queries.User.GetUser;
+using Queries.Queries.Users.GetUser;
 using System.Reflection;
 
 namespace Synchro.Infrastructure.Configurations

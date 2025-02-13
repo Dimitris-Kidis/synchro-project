@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Core.Domain.Entities;
-using Queries.Queries.DTOs;
+using Queries.DTOs;
 
 namespace Queries.MapperProfiles
 {
@@ -12,6 +12,8 @@ namespace Queries.MapperProfiles
 
             CreateMap<User, UserPaginatedDto>()
                 .ForMember(x => x.GroupInfo, opt => opt.MapFrom(x => x.Group));
+
+            CreateMap<User, GroupUserDto>();
         }
     }
 }

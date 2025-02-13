@@ -1,6 +1,6 @@
 ﻿using static Common.Enums.RoleTypeEnum;
 
-namespace Queries.Queries.DTOs
+namespace Queries.DTOs
 {
     public class UserDto
     {

@@ -1,10 +1,10 @@
 ﻿using Common.Pagination;
 using MediatR;
-using Queries.Queries.DTOs;
+using Queries.DTOs;
 
-namespace Queries.Queries.User.GetUsersPaginated
+namespace Queries.Queries.Groups.GetGroupPaginated
 {
-    public class GetUsersPaginatedQuery : IRequest<PaginatorResult<UserPaginatedDto>>
+    public class GetGroupPaginatedQuery : IRequest<PaginatorResult<GroupDto>>
     {
         public string? SearchInput { get; set; }
         public PaginatorRequest PaginatedRequest { get; set; } = new();

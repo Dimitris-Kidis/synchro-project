@@ -3,6 +3,7 @@ using Commands.Commands.CalendarEvents.DeleteCalendarEvent;
 using Commands.Commands.CalendarEvents.UpdateCalendarEvent;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Queries.Queries.CalendarEvents.GetCalendarEvent;
 
 namespace Synchro.Controllers.CalendarEvents
 {
@@ -40,6 +41,17 @@ namespace Synchro.Controllers.CalendarEvents
         {
             await _mediator.Send(new DeleteCalendarEventCommand { Id = id });
             return Ok();
+        }
+
+        /// <summary>
+        /// Get calendar event
+        /// </summary>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCalendarEvent(Guid id)
+        {
+            var result = await _mediator.Send(new GetCalendarEventQuery { Id = id });
+
+            return Ok(result);
         }
     }
 }

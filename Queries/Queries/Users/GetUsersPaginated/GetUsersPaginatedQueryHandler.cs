@@ -4,9 +4,9 @@ using Common.Pagination;
 using Core.Repositories.UserRepository;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Queries.Queries.DTOs;
+using Queries.DTOs;
 
-namespace Queries.Queries.User.GetUsersPaginated
+namespace Queries.Queries.Users.GetUsersPaginated
 {
     public class GetUsersPaginatedQueryHandler(
     IUserRepository userRepository,

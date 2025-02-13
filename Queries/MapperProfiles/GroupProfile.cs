@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Core.Domain.Entities;
-using Queries.Queries.DTOs;
+using Queries.DTOs;
 
 namespace Queries.MapperProfiles
 {
@@ -9,6 +9,7 @@ namespace Queries.MapperProfiles
         public GroupProfile()
         {
             CreateMap<Group, GroupInfoDto>();
+            CreateMap<Group, GroupDto>();
         }
     }
 }

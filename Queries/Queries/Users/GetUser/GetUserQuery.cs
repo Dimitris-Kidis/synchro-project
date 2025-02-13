@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Queries.Queries.DTOs;
+using Queries.DTOs;
 
-namespace Queries.Queries.User.GetUser
+namespace Queries.Queries.Users.GetUser
 {
     public class GetUserQuery : IRequest<UserDto>
     {

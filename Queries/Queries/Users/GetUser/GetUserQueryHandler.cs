@@ -4,9 +4,9 @@ using Common.Exceptions;
 using Core.Repositories.UserRepository;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Queries.Queries.DTOs;
+using Queries.DTOs;
 
-namespace Queries.Queries.User.GetUser
+namespace Queries.Queries.Users.GetUser
 {
     public class GetUserQueryHandler(
         IUserRepository userRepository,

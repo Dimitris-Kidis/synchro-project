@@ -1,4 +1,4 @@
-﻿namespace Queries.Queries.DTOs
+﻿namespace Queries.DTOs
 {
     public class GroupInfoDto
     {

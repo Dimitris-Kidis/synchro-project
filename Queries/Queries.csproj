@@ -26,4 +26,12 @@
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queries\CalendarEvents\GetCalendarEvents\" />
+    <Folder Include="Queries\FileStorage\" />
+    <Folder Include="Queries\Questions\" />
+    <Folder Include="Queries\WebContents\" />
+    <Folder Include="Queries\Requests\" />
+  </ItemGroup>
+
 </Project>
