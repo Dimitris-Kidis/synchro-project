@@ -6,7 +6,7 @@ namespace Core.Repositories.SynchroRepository
     public interface ISynchroRepository<TEntity> where TEntity : IBaseEntity
     {
         Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default);
-        Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
         Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
         Task<int> UpdateAsync(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateFactory, CancellationToken cancellationToken = default);

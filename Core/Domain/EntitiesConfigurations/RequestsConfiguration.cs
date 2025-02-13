@@ -17,11 +17,6 @@ namespace Core.Domain.EntitiesConfigurations
                 .WithMany(u => u.Requests)
                 .HasForeignKey(r => r.SenderId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(r => r.Recipient)
-                .WithMany()
-                .HasForeignKey(r => r.RecipientId)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

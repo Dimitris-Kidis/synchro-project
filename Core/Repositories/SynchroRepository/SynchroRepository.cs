@@ -1,30 +1,37 @@
 ﻿using Core.Domain;
 using Core.Interfaces;
+using Core.Providers.CurrentUserProvider;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Linq.Expressions;
 using Z.EntityFramework.Plus;
 
 namespace Core.Repositories.SynchroRepository
 {
-    public class SynchroRepository<TEntity>(SynchroDbContext dbContext) : ISynchroRepository<TEntity>
+    public class SynchroRepository<TEntity>(
+        SynchroDbContext dbContext,
+        ICurrentUserProvider currentUserProvider,
+        IConfiguration configuration) : ISynchroRepository<TEntity>
         where TEntity : class, IBaseEntity
     {
         protected readonly SynchroDbContext _dbContext = dbContext;
+        protected readonly ICurrentUserProvider currentUserProvider = currentUserProvider;
+        private readonly string defaultAuditPlaceholderName = configuration.GetSection("DefaultPlaceholders")["DefaultAuditPlaceholderName"];
 
         public async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _dbContext.Set<TEntity>().AsNoTracking().AnyAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+            return await _dbContext.Set<TEntity>().SingleAsync(x => x.Id == id, cancellationToken);
         }
 
         public async Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             _dbContext.Set<TEntity>().Add(entity);
-            Audit();
+            await Audit();
             await _dbContext.SaveChangesAsync(cancellationToken);
             return entity;
         }
@@ -32,7 +39,7 @@ namespace Core.Repositories.SynchroRepository
         public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
-            Audit();
+            await Audit();
             await _dbContext.SaveChangesAsync(cancellationToken);
             return entity;
         }
@@ -51,7 +58,7 @@ namespace Core.Repositories.SynchroRepository
         public async Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
             await _dbContext.Set<TEntity>().AddRangeAsync(entities, cancellationToken);
-            Audit();
+            await Audit();
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
@@ -63,7 +70,7 @@ namespace Core.Repositories.SynchroRepository
         public async Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
             _dbContext.Set<TEntity>().UpdateRange(entities);
-            Audit();
+            await Audit();
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
@@ -102,7 +109,7 @@ namespace Core.Repositories.SynchroRepository
             return query;
         }
 
-        private void Audit()
+        private async Task Audit()
         {
             var now = DateTimeOffset.UtcNow;
             var entries = _dbContext.ChangeTracker.Entries<IBaseEntity>().Where(x => x.State is EntityState.Added or EntityState.Modified);
@@ -112,12 +119,12 @@ namespace Core.Repositories.SynchroRepository
                 if (entry.State == EntityState.Added)
                 {
                     entry.Entity.CreatedAt = now;
-                    entry.Entity.CreatedBy = "admin";
+                    entry.Entity.CreatedBy = await currentUserProvider.GetCurrentUserFullNameAsync() ?? defaultAuditPlaceholderName;
                 }
                 else if (entry.State == EntityState.Modified)
                 {
                     entry.Entity.LastModifiedAt = now;
-                    entry.Entity.LastModifiedBy = "admin";
+                    entry.Entity.LastModifiedBy = await currentUserProvider.GetCurrentUserFullNameAsync() ?? defaultAuditPlaceholderName;
                 }
             }
         }

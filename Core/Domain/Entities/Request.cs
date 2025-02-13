@@ -15,9 +15,8 @@ namespace Core.Domain.Entities
         public bool IsApproved { get; set; }
         public Guid SenderId { get; set; }
         public User Sender { get; set; }
-        public Guid RecipientId { get; set; }
-        public User Recipient { get; set; }
-        public Guid GroupId { get; set; }
+        public string SenderName { get; set; }
+        public Guid? GroupId { get; set; }
         public Group Group { get; set; }
         public string CreatedBy { get; set; }
         public string? LastModifiedBy { get; set; }
