@@ -4,6 +4,7 @@ using Commands.Commands.CalendarEvents.UpdateCalendarEvent;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Queries.Queries.CalendarEvents.GetCalendarEvent;
+using Queries.Queries.CalendarEvents.GetCalendarEvents;
 
 namespace Synchro.Controllers.CalendarEvents
 {
@@ -50,6 +51,17 @@ namespace Synchro.Controllers.CalendarEvents
         public async Task<IActionResult> GetCalendarEvent(Guid id)
         {
             var result = await _mediator.Send(new GetCalendarEventQuery { Id = id });
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get calendar events
+        /// </summary>
+        [HttpGet("group/{groupId}")]
+        public async Task<IActionResult> GetCalendarEvents(Guid groupId)
+        {
+            var result = await _mediator.Send(new GetCalendarEventsQuery { Id = groupId });
 
             return Ok(result);
         }

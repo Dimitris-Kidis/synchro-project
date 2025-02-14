@@ -49,5 +49,11 @@ namespace Core.Providers.CurrentUserProvider
             var userRole = await GetCurrentUserRoleAsync();
             return userRole != null && roles.Contains(userRole.Value);
         }
+
+        public async Task<bool> HasGroupAsync()
+        {
+            var user = await GetCurrentUserAsync();
+            return user?.GroupId != null;
+        }
     }
 }

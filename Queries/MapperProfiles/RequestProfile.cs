@@ -4,11 +4,11 @@ using Queries.DTOs;
 
 namespace Queries.MapperProfiles
 {
-    public class WebContentProfile : Profile
+    public class RequestProfile : Profile
     {
-        public WebContentProfile()
+        public RequestProfile()
         {
-            CreateMap<WebContent, WebContentDto>();
+            CreateMap<Request, RequestDto>();
         }
     }
 }

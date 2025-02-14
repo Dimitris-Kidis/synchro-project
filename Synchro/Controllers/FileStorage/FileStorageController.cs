@@ -2,6 +2,7 @@
 using Commands.Commands.FileStorage.DeleteFile;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Queries.Queries.FileStorage.GetAllFilesForGroup;
 
 namespace Synchro.Controllers.FileStorage
 {
@@ -31,6 +32,17 @@ namespace Synchro.Controllers.FileStorage
             await _mediator.Send(new DeleteStorageFileCommand { Id = id });
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Get all files for group
+        /// </summary>
+        [HttpGet("all/{groupId}")]
+        public async Task<IActionResult> GetAllFilesForGroup(Guid groupId)
+        {
+            var result = await _mediator.Send(new GetAllFilesForGroupQuery { Id = groupId });
+
+            return Ok(result);
         }
     }
 }

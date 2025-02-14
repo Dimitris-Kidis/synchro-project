@@ -3,6 +3,8 @@ using Commands.Commands.Questions.DeleteQuestion;
 using Commands.Commands.Questions.UpdateQuestion;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Queries.Queries.Questions.GetAllQuestions;
+using Queries.Queries.Questions.GetQuestionData;
 
 namespace Synchro.Controllers.Questions
 {
@@ -40,6 +42,28 @@ namespace Synchro.Controllers.Questions
         {
             await _mediator.Send(new DeleteQuestionCommand { Id = id });
             return Ok();
+        }
+
+        /// <summary>
+        /// Get questions
+        /// </summary>
+        [HttpGet("all")]
+        public async Task<IActionResult> GetQuestions()
+        {
+            var result = await _mediator.Send(new GetAllQuestionsQuery());
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get questions data
+        /// </summary>
+        [HttpGet("info")]
+        public async Task<IActionResult> GetQuestionsData()
+        {
+            var result = await _mediator.Send(new GetQuestionDataQuery());
+
+            return Ok(result);
         }
     }
 }

@@ -3,6 +3,7 @@ using Commands.Commands.Requests.DeleteRequest;
 using Commands.Commands.Requests.UpdateRequest;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Queries.Queries.Requests.GetMyRequests;
 
 namespace Synchro.Controllers.Requests
 {
@@ -43,6 +44,17 @@ namespace Synchro.Controllers.Requests
             await _mediator.Send(new DeleteRequestCommand { Id = id });
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Get my requests
+        /// </summary>
+        [HttpGet("")]
+        public async Task<IActionResult> GetMyRequests()
+        {
+            var result = await _mediator.Send(new GetMyRequestsQuery());
+
+            return Ok(result);
         }
     }
 }

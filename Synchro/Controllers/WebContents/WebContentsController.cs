@@ -3,6 +3,7 @@ using Commands.Commands.WebContents.DeleteWebContent;
 using Commands.Commands.WebContents.UpdateWebContent;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Queries.Queries.WebContents.GetWebContentsPaginated;
 
 namespace Synchro.Controllers.WebContents
 {
@@ -43,6 +44,17 @@ namespace Synchro.Controllers.WebContents
             await _mediator.Send(new DeleteWebContentCommand { Id = id });
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Get web contents
+        /// </summary>
+        [HttpPost("paginated")]
+        public async Task<IActionResult> GetWebContents([FromBody] GetWebContentsPaginatedQuery query)
+        {
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
         }
     }
 }
