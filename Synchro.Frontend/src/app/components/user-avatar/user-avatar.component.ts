@@ -59,7 +59,7 @@ export class UserAvatarComponent implements OnInit {
     if (file) {
       this.setIsBusy(true);
       this.attachmentsService
-        .createAttachment(file)
+        .uploadAttachment(file)
         .subscribe({
           next: (newUrl: string) => (this.user.image = newUrl),
           error: (err: HttpErrorResponse) => {

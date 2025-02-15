@@ -30,7 +30,8 @@ namespace Queries.Queries.Requests.GetMyRequests
                 throw new BusinessValidationException("User not found");
             }
 
-            var query = requestRepository.GetAll().Where(x => x.SenderId == currentUser.Id);
+            var query = requestRepository.GetAll();
+            //.Where(x => x.SenderId == currentUser.Id);
 
             switch (currentUser.Role)
             {

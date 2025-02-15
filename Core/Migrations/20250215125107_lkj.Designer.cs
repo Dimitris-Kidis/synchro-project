@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(SynchroDbContext))]
-    [Migration("20250213171528_fielf2")]
-    partial class fielf2
+    [Migration("20250215125107_lkj")]
+    partial class lkj
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

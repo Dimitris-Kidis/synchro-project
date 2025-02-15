@@ -20,9 +20,7 @@ namespace Commands.Commands.Auth.Login
                 throw new ForbiddenAccessException("The password is not valid, please check it again..");
             }
 
-            var userIdString = await _userManager.GetUserIdAsync(user);
-
-            return userIdString;
+            return user.Id.ToString();
         }
     }
 }

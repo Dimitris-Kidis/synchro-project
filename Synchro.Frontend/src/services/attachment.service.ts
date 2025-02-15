@@ -9,7 +9,7 @@ import { DocumentTypeEnum } from '../app/enums/document-type.enum';
 export class AttachmentsService {
   public constructor(private readonly _httpService: HttpClient) {}
 
-  public createAttachment(file: File, type: DocumentTypeEnum = DocumentTypeEnum.UserAvatar): Observable<string> {
+  public uploadAttachment(file: File, type: DocumentTypeEnum = DocumentTypeEnum.UserAvatar): Observable<string> {
     const formData = new FormData();
 
     formData.append('File', file);

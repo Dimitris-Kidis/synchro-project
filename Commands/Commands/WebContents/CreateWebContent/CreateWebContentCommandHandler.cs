@@ -17,7 +17,7 @@ namespace Commands.Commands.WebContents.CreateWebContent
         private readonly ICurrentUserProvider currentUserProvider = currentUserProvider;
         private readonly IMapper mapper = mapper;
 
-        public Task Handle(CreateWebContentCommand request, CancellationToken cancellationToken)
+        public async Task Handle(CreateWebContentCommand request, CancellationToken cancellationToken)
         {
             Guid? currentUserId = currentUserProvider.GetCurrentUserId();
 
@@ -28,8 +28,9 @@ namespace Commands.Commands.WebContents.CreateWebContent
 
             var webContent = mapper.Map<WebContent>(request);
             webContent.UserId = currentUserId.Value;
+            webContent.Author = await currentUserProvider.GetCurrentUserFullNameAsync();
 
-            return webContentRepository.AddAsync(webContent, cancellationToken);
+            await webContentRepository.AddAsync(webContent, cancellationToken);
         }
     }
 }

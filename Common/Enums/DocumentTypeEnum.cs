@@ -5,6 +5,7 @@
         public enum DocumentType
         {
             UserAvatar,
+            NotificationIcon,
             GroupAvatar,
             StorageFile,
             QuestionImage

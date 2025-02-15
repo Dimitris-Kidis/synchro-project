@@ -49,7 +49,7 @@ namespace Commands.Commands.Requests.UpdateRequest
             switch (request.Type)
             {
                 case RequestType.CreateGroup:
-                    await groupRepository.UpdateAsync(x => x.Id == request.GroupId, x => new Group { IsApprovedToBeCreated = request.IsApproved, ParticipantsNumber = 1 }, cancellationToken);
+                    await groupRepository.UpdateAsync(x => x.Id == request.GroupId, x => new Group { IsApprovedToBeCreated = command.IsApproved, ParticipantsNumber = 1 }, cancellationToken);
                     await userRepository.UpdateAsync(x => x.Id == request.SenderId, x => new User { GroupId = request.GroupId }, cancellationToken);
                     break;
                 case RequestType.GetInGroup:

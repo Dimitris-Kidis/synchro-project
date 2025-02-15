@@ -51,7 +51,7 @@ export class GroupAvatarComponent implements OnInit {
     if (file) {
       this.setIsBusy(true);
       this.attachmentsService
-        .createAttachment(file, DocumentTypeEnum.GroupAvatar)
+        .uploadAttachment(file, DocumentTypeEnum.GroupAvatar)
         .subscribe({
           next: (newUrl: string) => (this.group!.image = newUrl),
           error: (err: HttpErrorResponse) => {

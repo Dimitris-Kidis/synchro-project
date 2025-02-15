@@ -46,7 +46,7 @@ export class UploadImageComponent {
       reader.readAsDataURL(file);
 
       this.attachmentsService
-        .createAttachment(file, this.documentType)
+        .uploadAttachment(file, this.documentType)
         .subscribe({
           next: (newUrl: string) => {
             console.log(newUrl);

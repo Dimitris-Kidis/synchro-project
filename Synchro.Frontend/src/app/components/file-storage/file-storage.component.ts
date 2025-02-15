@@ -79,7 +79,7 @@ export class FileStorageComponent implements OnInit {
     this.setIsBusy(true);
 
     this.attachmentsService
-      .createAttachment(file, DocumentTypeEnum.StorageFile)
+      .uploadAttachment(file, DocumentTypeEnum.StorageFile)
       .subscribe({
         next: (fileLink: string) => {
           this.addFileToStorage(file, fileLink);

@@ -72,8 +72,6 @@ namespace Commands.Commands.Attachments.UploadAttachment
 
                     await _groupRepository.UpdateAsync(x => x.Id == currentUserGroupId, x => new Group { Image = finalUrl }, cancellationToken);
                     break;
-                default:
-                    throw new BusinessValidationException("Unknown Document Type. Please provide an existing one...");
             }
 
             return finalUrl;
