@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.Domain.Entities;
 using Queries.DTOs;
+using Queries.Queries.Bot.Qustions.GetNextQuestion;
 
 namespace Queries.MapperProfiles
 {
@@ -10,6 +11,7 @@ namespace Queries.MapperProfiles
         {
             CreateMap<Question, QuestionDto>();
             CreateMap<Question, QuestionViewDto>();
+            CreateMap<Question, QuizQuestionDto>();
         }
     }
 }

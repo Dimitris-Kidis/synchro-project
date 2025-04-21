@@ -15,6 +15,7 @@ namespace Core.Domain.Entities
         public int Age { get; set; }
         public string? Image { get; set; }
         public string? SecretKey { get; set; }
+        public long? TelegramChatId { get; set; }
         public RoleType Role { get; set; }
         public Guid? GroupId { get; set; }
         public Group Group { get; set; }

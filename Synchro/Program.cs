@@ -18,11 +18,9 @@ builder.Services
     .AddMapper()
     .AddCorsPolicy()
     .AddMediatRConfigs()
+    .AddTelegramClient(builder)
     .AddControllers(option => option.Filters.Add(typeof(ApiExceptionFilter)))
     .AddValidators();
-//.AddTelegramClient()
-
-builder.Services.AddSignalR();
 
 builder.Services.AddIdentityConfiguration();
 builder.Services.AddJwtAuthentication();
