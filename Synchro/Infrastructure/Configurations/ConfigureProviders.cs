@@ -6,7 +6,7 @@ namespace Synchro.Infrastructure.Configurations
     {
         public static IServiceCollection AddProviders(this IServiceCollection services)
         {
-            services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
+            services.AddTransient<ICurrentUserProvider, CurrentUserProvider>();
 
             return services;
         }

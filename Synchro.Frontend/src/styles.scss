@@ -369,6 +369,10 @@ synchro-layout router-outlet + * {
         > .mat-datepicker-toggle {
           margin-left: -8px;
         }
+
+        > .mat-timepicker-toggle {
+          margin-left: -8px;
+        }
       }
 
       .mat-mdc-form-field-icon-suffix,
@@ -389,6 +393,10 @@ synchro-layout router-outlet + * {
         }
 
         > .mat-datepicker-toggle {
+          margin-right: -8px;
+        }
+
+        > .mat-timepicker-toggle {
           margin-right: -8px;
         }
       }
@@ -425,6 +433,20 @@ synchro-layout router-outlet + * {
 
         /* Datepicker default icon size */
         .mat-datepicker-toggle-default-icon {
+          width: 1.2rem;
+          height: 1.2rem;
+          min-width: 1.2rem;
+          min-height: 1.2rem;
+          font-size: 1.2rem;
+          line-height: 1.2rem;
+
+          svg {
+            width: 1.2rem;
+            height: 1.2rem;
+          }
+        }
+
+        .mat-timepicker-toggle-default-icon {
           width: 1.2rem;
           height: 1.2rem;
           min-width: 1.2rem;

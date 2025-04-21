@@ -4,6 +4,7 @@ export interface IEventEditConfig {
   title: Record<'title', IFieldConfig>;
   description: Record<'description', IFieldConfig>;
   startDateTime: Record<'startDateTime', IFieldConfig>;
+  endDateTime: Record<'endDateTime', IFieldConfig>;
 }
 
 export function getEventEditConfig(): IEventEditConfig {
@@ -16,6 +17,9 @@ export function getEventEditConfig(): IEventEditConfig {
     },
     startDateTime: {
       startDateTime: buildFieldConfig(),
+    },
+    endDateTime: {
+      endDateTime: buildFieldConfig(),
     },
   };
 }

@@ -1,6 +1,6 @@
 <div class="container">
   <span class="header">{{
-    (isCreateMode ? 'FEED.POST.EDIT.HEADER.CREATE' : 'FEED.POST.EDIT.HEADER.UPDATE') | translate
+    (isCreateMode ? 'CALENDAR.EVENT.EDIT.HEADER.CREATE' : 'CALENDAR.EVENT.EDIT.HEADER.UPDATE') | translate
   }}</span>
 
   <form
@@ -28,12 +28,53 @@
 
     <div class="row">
       <synchro-date-edit-control
-        [(value)]="event.startDateTime"
+        [(value)]="event.startDateTime!"
         [config]="config.startDateTime"
         [schema]="schema.startDateTime"
         placeholder="{{ 'HISTORY.DATE_PLACEHOLDER' | translate }}"
-        class="date"
+        class="control"
       ></synchro-date-edit-control>
+
+      <mat-form-field class="control">
+        <mat-label>{{ 'CALENDAR.LABEL.START_TIME' | translate }}</mat-label>
+        <input
+          matInput
+          [matTimepicker]="timepicker"
+          [(ngModel)]="event.startDateTime"
+          [ngModelOptions]="{ updateOn: 'blur', standalone: true }"
+          placeholder="hh:mm"
+        />
+        <mat-timepicker #timepicker />
+        <mat-timepicker-toggle
+          [for]="timepicker"
+          matSuffix
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <synchro-date-edit-control
+        [(value)]="event.endDateTime!"
+        [config]="config.endDateTime"
+        [schema]="schema.endDateTime"
+        class="control"
+      ></synchro-date-edit-control>
+
+      <mat-form-field class="control">
+        <mat-label>{{ 'CALENDAR.LABEL.END_TIME' | translate }}</mat-label>
+        <input
+          matInput
+          [matTimepicker]="timepicker"
+          [(ngModel)]="event.endDateTime"
+          [ngModelOptions]="{ updateOn: 'blur', standalone: true }"
+          placeholder="hh:mm"
+        />
+        <mat-timepicker #timepicker />
+        <mat-timepicker-toggle
+          [for]="timepicker"
+          matSuffix
+        />
+      </mat-form-field>
     </div>
 
     <div class="content">

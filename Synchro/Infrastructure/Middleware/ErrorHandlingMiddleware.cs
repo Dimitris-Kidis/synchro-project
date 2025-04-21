@@ -3,7 +3,6 @@ using System.Text.Json;
 
 namespace Synchro.Infrastructure.Middleware
 {
-    // REFACTOR
     public class ErrorHandlingMiddleware
     {
         private readonly IHostEnvironment _env;

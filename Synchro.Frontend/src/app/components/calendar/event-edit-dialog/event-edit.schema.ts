@@ -7,6 +7,7 @@ export interface IEventEditSchema {
   title: ITextEditControlSchema;
   description: ITextEditControlSchema;
   startDateTime: IDateEditControlSchema;
+  endDateTime: IDateEditControlSchema;
 }
 
 export function getEventEditSchema(): IEventEditSchema {
@@ -37,8 +38,15 @@ export function getEventEditSchema(): IEventEditSchema {
       controlId: 'startDateTimeId' + id,
       formName: 'startDateTimeForm',
       fieldName: 'startDateTime',
-      translationKey: 'FEED.POST.LABEL.DESCRIPTION',
-      placeholder: 'FEED.POST.LABEL.DESCRIPTION',
+      translationKey: 'CALENDAR.LABEL.START_DATE',
+      placeholder: 'dd/mm/yyyy',
+    },
+    endDateTime: {
+      controlId: 'endDateTimeId' + id,
+      formName: 'endDateTimeForm',
+      fieldName: 'endDateTime',
+      translationKey: 'CALENDAR.LABEL.END_DATE',
+      placeholder: 'dd/mm/yyyy',
     },
   };
 }

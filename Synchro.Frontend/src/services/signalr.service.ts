@@ -41,8 +41,10 @@ export class SignalRService {
       return;
     }
 
+    const userId = this.currentUserProvider.currentUser.id;
+
     try {
-      await this.hubConnection.invoke('JoinChatAsync', userName);
+      await this.hubConnection.invoke('JoinChatAsync', userName, userId);
       console.log(`${userName} joined the chat room.`);
     } catch (err) {
       console.error('Error joining chat:', err);

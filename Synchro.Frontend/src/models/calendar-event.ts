@@ -6,7 +6,7 @@ export interface CalendarEventDto {
   links?: string[];
   startDateTime?: Date;
   userAvatar?: string;
-  endDateTime?: string;
+  endDateTime?: Date;
   userId?: string;
   groupId?: string;
   createdBy?: string;

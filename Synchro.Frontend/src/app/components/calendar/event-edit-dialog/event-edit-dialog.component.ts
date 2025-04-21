@@ -3,6 +3,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTimepickerModule } from '@angular/material/timepicker';
 import { TranslateModule } from '@ngx-translate/core';
 import { QuillModule } from 'ngx-quill';
 import { CalendarEventDto } from '../../../../models/calendar-event';
@@ -30,6 +33,11 @@ import { IEventEditSchema, getEventEditSchema } from './event-edit.schema';
     CommonModule,
     LinkListComponent,
     DateEditControlComponent,
+    MatTimepickerModule,
+    MatFormFieldModule,
+    CommonModule,
+    MatInputModule,
+    FormsModule,
   ],
   templateUrl: './event-edit-dialog.component.html',
   styleUrl: './event-edit-dialog.component.scss',
@@ -103,6 +111,25 @@ export class EventEditDialogComponent implements OnInit {
 
   public cancel(): void {
     this.dialogRef.close({ hasToRefresh: false });
+  }
+
+  public formatTime(date?: Date): string {
+    if (!date) return '';
+    const d = new Date(date);
+    const h = d.getHours().toString().padStart(2, '0');
+    const m = d.getMinutes().toString().padStart(2, '0');
+    return `${h}:${m}`;
+  }
+
+  public onStartTimeChange(newTime: Date): void {
+    if (!this.event.startDateTime) {
+      this.event.startDateTime = new Date();
+    }
+
+    const updated = new Date(this.event.startDateTime);
+    updated.setHours(newTime.getHours(), newTime.getMinutes(), 0, 0);
+
+    this.event.startDateTime = updated;
   }
 
   private setIsBusy(isBusy: boolean): void {

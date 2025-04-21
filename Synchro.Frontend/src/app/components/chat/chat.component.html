@@ -42,8 +42,13 @@
           common: msg.messageType === MessageTypeEnum.Joined
         }"
       >
+        @if (msg.messageType !== MessageTypeEnum.Joined) {
+
         <div class="message-header">{{ msg.userName }}</div>
         <div class="message-content">{{ msg.message }}</div>
+        } @else {
+        <div class="message-header">{{ msg.userName }} присоединился к чату!</div>
+        }
       </div>
       <div #messagesEnd></div>
     </div>
