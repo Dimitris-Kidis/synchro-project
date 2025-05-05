@@ -1,0 +1,127 @@
+@import '../../../styles';
+
+.board {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+
+  .column {
+    flex: 1 1 300px;
+    min-width: 280px;
+    background-color: #f4f5f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+    .column-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: #ffffff;
+      border-bottom: 1px solid #dcdcdc;
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+      h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .task-list {
+      padding: 1rem;
+      height: 100%;
+      background-color: #f9fafc;
+      border-radius: 0 0 8px 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.2s ease;
+      gap: 15px;
+
+      &.cdk-drop-list-dragging {
+        border: 2px dashed #5c6bc0;
+        background-color: #e8eaf6;
+      }
+    }
+
+    // .task {
+    //   width: 100%;
+    //   background-color: #ffffff;
+    //   padding: 1rem;
+    //   margin-bottom: 1rem;
+    //   border-radius: 4px;
+    //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    //   transition: transform 0.2s ease, box-shadow 0.2s ease;
+    //   cursor: grab;
+
+    //   &:hover {
+    //     transform: translateY(-5px);
+    //     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    //   }
+
+    //   &.cdk-drag-preview {
+    //     opacity: 0.9;
+    //     transform: scale(1.05);
+    //     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    //     border: 2px solid #90caf9;
+    //   }
+
+    //   &.cdk-drag-placeholder {
+    //     opacity: 0;
+    //   }
+
+    //   &.cdk-drag-animating {
+    //     transition: transform 0.25s ease;
+    //   }
+    // }
+
+    .empty-task-placeholder {
+      text-align: center;
+      color: #999;
+      font-style: italic;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .empty-task-placeholder:hover {
+      color: #666;
+    }
+
+    .add-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border-radius: $border-radius-light;
+      font-size: 24px;
+      font-weight: 400;
+      padding: 3px;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      color: var(--t-c-accent);
+      border: 1px var(--t-c-accent) solid;
+      transition: all 0.3s ease;
+
+      .plus-icon {
+        display: flex;
+        justify-content: center;
+      }
+
+      &:hover {
+        background-color: var(--t-c-accent);
+        border-radius: $border-radius-mega-heavy;
+        filter: brightness(110%);
+        color: var(--t-c-white);
+        transform: scale(1.1);
+      }
+    }
+  }
+}

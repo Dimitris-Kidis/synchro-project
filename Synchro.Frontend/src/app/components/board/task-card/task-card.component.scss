@@ -1,0 +1,211 @@
+@import '../../../../styles';
+
+.task-card {
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+
+  &.bug {
+    border-left: 8px solid red;
+  }
+  &.story {
+    border-left: 8px solid rgb(79, 179, 255);
+  }
+  &.hotfix {
+    border-left: 8px solid purple;
+  }
+  &.feature {
+    border-left: 8px solid orange;
+  }
+
+  .icon {
+    flex: 1;
+  }
+  .content {
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    .id {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .tags {
+      margin-top: 5px;
+    }
+  }
+  .actions {
+    flex: 3;
+
+    .actions-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+
+      .edit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        border: 1px solid var(--t-c-warning);
+        color: var(--t-c-warning);
+        padding: 5px 6px;
+        font-weight: 700;
+        background-color: transparent;
+        border-radius: $border-radius-light;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          filter: brightness(110%);
+          border-radius: $border-radius-medium;
+          background-color: var(--t-c-warning-light);
+        }
+
+        &:disabled {
+          border: 1px solid var(--t-c-disabled);
+          background-color: var(--bg-c-disabled);
+          color: var(--t-c-disabled);
+          cursor: unset;
+        }
+      }
+
+      .delete {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        border: 1px solid var(--t-c-error);
+        color: var(--t-c-error);
+        padding: 5px 6px;
+        font-weight: 700;
+        background-color: transparent;
+        border-radius: $border-radius-light;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          filter: brightness(110%);
+          border-radius: $border-radius-medium;
+          background-color: var(--t-c-error-light);
+        }
+
+        &:disabled {
+          border: 1px solid var(--t-c-disabled);
+          background-color: var(--bg-c-disabled);
+          color: var(--t-c-disabled);
+          cursor: unset;
+        }
+      }
+    }
+  }
+
+  .task-content {
+    flex: 1;
+    padding-left: 1rem;
+
+    .task-icon {
+      font-size: 24px;
+      color: var(--t-c-primary);
+    }
+
+    .task-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .task-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+
+      .task-state {
+        display: flex;
+        align-items: center;
+
+        .state-label {
+          font-size: 0.9rem;
+          color: #aaa;
+          margin-right: 0.5rem;
+        }
+
+        .state-circle {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background-color: #ddd;
+          display: inline-block;
+        }
+
+        &.for-ba {
+          background-color: #ffcc00;
+        }
+        &.for-development {
+          background-color: #0d47a1;
+        }
+        &.in-development {
+          background-color: #1976d2;
+        }
+        &.for-testing {
+          background-color: #388e3c;
+        }
+        &.in-testing {
+          background-color: #81c784;
+        }
+        &.for-merge {
+          background-color: #f57c00;
+        }
+        &.merged {
+          background-color: #2e7d32;
+        }
+      }
+
+      .task-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+
+    .assignee {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+
+      .assignee-name {
+        margin-left: 0.5rem;
+        font-size: 0.9rem;
+        color: #555;
+      }
+    }
+
+    .tags {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.bugIcon {
+  color: red;
+}
+.storyIcon {
+  color: rgb(79, 179, 255);
+}
+.hotfixIcon {
+  color: purple;
+}
+.featureIcon {
+  color: orange;
+}

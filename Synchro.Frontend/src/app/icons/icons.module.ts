@@ -101,6 +101,12 @@ export class IconsModule {
       .addSvgIcon('downgrade-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/downgrade-icon.svg'))
       .addSvgIcon('upgrade-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/upgrade-icon.svg'))
       .addSvgIcon('plus-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/plus-symbol-button.svg'))
+
+      .addSvgIcon('bug-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/bug-svgrepo-com.svg'))
+      .addSvgIcon('story-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/book-open-svgrepo-com.svg'))
+      .addSvgIcon('feature-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/bulb-svgrepo-com.svg'))
+      .addSvgIcon('hotfix-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/priority-svgrepo-com.svg'))
+
       .addSvgIcon('trash-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/trash-can-svgrepo-com.svg'))
       .addSvgIcon('send-icon', domSanitizer.bypassSecurityTrustResourceUrl('assets/images/send.svg'))
       .addSvgIcon(

@@ -1,0 +1,117 @@
+<form
+  #form="ngForm"
+  class="form container"
+  name="form"
+  autocomplete="off"
+  (ngSubmit)="(form.form.valid)"
+>
+  <div
+    class="header"
+    [ngClass]="{
+      bug: task.type === WorkItemTypeEnum.Bug,
+      story: task.type === WorkItemTypeEnum.Story,
+      hotfix: task.type === WorkItemTypeEnum.Hotfix,
+      feature: task.type === WorkItemTypeEnum.Feature
+    }"
+  >
+    <div class="first-line">
+      <span class="number">
+        <mat-icon
+          class="plus-icon"
+          [svgIcon]="getIconName(task.type!)"
+          [ngClass]="{
+            bugIcon: task.type === WorkItemTypeEnum.Bug,
+            storyIcon: task.type === WorkItemTypeEnum.Story,
+            hotfixIcon: task.type === WorkItemTypeEnum.Hotfix,
+            featureIcon: task.type === WorkItemTypeEnum.Feature
+          }"
+        ></mat-icon>
+
+        <div class="id">#{{ task.id | slice : 0 : 6 | uppercase }}</div></span
+      >
+
+      <synchro-text-edit-control
+        [(value)]="task.title"
+        [config]="config.title"
+        [schema]="schema.title"
+        class="control"
+      ></synchro-text-edit-control>
+    </div>
+
+    <div class="assignee">
+      <synchro-user-avatar
+        [size]="ImageSizeEnum.ExtraSmall"
+        [customUser]="mapUser(task.createdBy!.split(' ')!, task.assigneeAvatar)"
+      ></synchro-user-avatar>
+      {{ task.createdBy | defaultValue }}
+    </div>
+  </div>
+
+  <div class="tags">
+    <synchro-tags
+      [tags]="task.tags ?? []"
+      (refreshTags)="refreshTags($event)"
+      [isEditMode]="true"
+    ></synchro-tags>
+  </div>
+
+  <div class="info">
+    <div class="editor">
+      <quill-editor
+        [(ngModel)]="task.description"
+        [modules]="quillConfig.modules!"
+        [placeholder]="quillConfig.placeholder!"
+        [readOnly]="quillConfig.readOnly!"
+        [format]="quillConfig.format!"
+        class="quill"
+        name="content"
+      ></quill-editor>
+    </div>
+
+    <div class="options">
+      <synchro-combo-edit-control
+        [config]="config.state"
+        [schema]="schema.state"
+        [(value)]="task.state"
+        class="control"
+      ></synchro-combo-edit-control>
+
+      <synchro-combo-edit-control
+        [config]="config.status"
+        [schema]="schema.status"
+        [(value)]="task.status"
+        class="control"
+      ></synchro-combo-edit-control>
+
+      <synchro-combo-edit-control
+        [config]="config.priority"
+        [schema]="schema.priority"
+        [(value)]="task.priority"
+        class="control"
+      ></synchro-combo-edit-control>
+
+      <synchro-combo-edit-control
+        [config]="config.type"
+        [schema]="schema.type"
+        [(value)]="task.type"
+        class="control"
+      ></synchro-combo-edit-control>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button
+      class="cancel-btn"
+      (click)="cancel()"
+    >
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button
+      class="save-btn"
+      (click)="save()"
+      [disabled]="isBusy || form.invalid"
+    >
+      {{ 'Save' | translate }}
+    </button>
+  </div>
+</form>

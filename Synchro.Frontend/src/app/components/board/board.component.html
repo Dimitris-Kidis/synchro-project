@@ -1,1 +1,47 @@
-<p>board works!</p>
+<div
+  class="board"
+  cdkDropListGroup
+>
+  @for (column of columns; track column.status) {
+  <div class="column">
+    <div class="column-header">
+      <h2>{{ column.status | enumName : WorkItemStatusTypeEnum }}</h2>
+      <span>{{ column.workItems.length }} tasks</span>
+    </div>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="column.workItems"
+      class="task-list"
+      (cdkDropListDropped)="onDrop($event, column.status)"
+    >
+      @for (task of column.workItems; track task.id) {
+      <synchro-task-card
+        [cdkDragData]="task"
+        cdkDrag
+        class="task"
+        [task]="task"
+        (click)="openTask(task.id!)"
+        (onTaskDelete)="deleteTask($event)"
+        (onTaskEdit)="editTask($event)"
+      >
+      </synchro-task-card>
+      } @empty {
+      <div class="empty-task-placeholder">No tasks</div>
+
+      } @if (column.status === WorkItemStatusTypeEnum.New) {
+      <button
+        class="add-button"
+        (click)="addNewTask()"
+        aria-label="Add task"
+      >
+        <mat-icon
+          class="plus-icon"
+          [svgIcon]="'plus-icon'"
+        ></mat-icon>
+      </button>
+      }
+    </div>
+  </div>
+  }
+</div>

@@ -1,0 +1,146 @@
+<!-- <div class="task-card">
+  <div
+    class="task-type-indicator"
+    [ngClass]="{
+      bug: task.type === 'Bug',
+      story: task.type === 'Story',
+      hotfix: task.type === 'Hotfix',
+      feature: task.type === 'Feature'
+    }"
+    class="story"
+  ></div>
+
+  <div class="task-content">
+    <div class="task-icon">
+      <mat-icon
+        *ngIf="task.type === 'Bug'"
+        svgIcon="bug-icon"
+      ></mat-icon>
+      <mat-icon
+        *ngIf="task.type === 'Story'"
+        svgIcon="story-icon"
+      ></mat-icon>
+      <mat-icon
+        *ngIf="task.type === 'Hotfix'"
+        svgIcon="hotfix-icon"
+      ></mat-icon>
+      <mat-icon
+        *ngIf="task.type === 'Feature'"
+        svgIcon="feature-icon"
+      ></mat-icon>
+    </div>
+
+    <div class="task-title">{{ task.title }}</div>
+
+    <div class="task-footer">
+      <div class="task-state">
+        <span class="state-label">State</span>
+        <div
+          class="state-circle"
+          [ngClass]="{
+            'for-ba': task.state === WorkItemStateTypeEnum.ForBa,
+            'for-development': task.state === WorkItemStateTypeEnum.ForDevelopment,
+            'in-development': task.state === WorkItemStateTypeEnum.InDevelopment,
+            'for-testing': task.state === WorkItemStateTypeEnum.ForTesting,
+            'in-testing': task.state === WorkItemStateTypeEnum.InTesting,
+            'for-merge': task.state === WorkItemStateTypeEnum.ForMerge,
+            merged: task.state === WorkItemStateTypeEnum.Merged
+          }"
+        >
+          >
+          {{ task.state! | enumName : WorkItemStateTypeEnum }}
+        </div>
+      </div>
+
+      <div class="task-actions">
+        <button
+          mat-icon-button
+          (click)="editTask(task.id!)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="deleteTask(task.id!)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="assignee">
+      <app-avatar [user]="task.assignee"></app-avatar>
+      <div class="assignee-name">{{ task.assignee?.name }}</div>
+    </div>
+
+    <div class="tags">
+      <app-tags [tags]="task.tags"></app-tags>
+    </div>
+  </div>
+</div> -->
+
+<div
+  class="task-card"
+  [ngClass]="{
+    bug: task.type === WorkItemTypeEnum.Bug,
+    story: task.type === WorkItemTypeEnum.Story,
+    hotfix: task.type === WorkItemTypeEnum.Hotfix,
+    feature: task.type === WorkItemTypeEnum.Feature
+  }"
+>
+  <div class="icon">
+    <mat-icon
+      class="plus-icon"
+      [svgIcon]="getIconName(task.type!)"
+      [ngClass]="{
+        bugIcon: task.type === WorkItemTypeEnum.Bug,
+        storyIcon: task.type === WorkItemTypeEnum.Story,
+        hotfixIcon: task.type === WorkItemTypeEnum.Hotfix,
+        featureIcon: task.type === WorkItemTypeEnum.Feature
+      }"
+    ></mat-icon>
+  </div>
+  <div class="content">
+    <div class="id">#{{ task.id | slice : 0 : 6 | uppercase }}</div>
+
+    <div class="text">{{ task.title | defaultValue }}</div>
+
+    <div class="state"></div>
+    <div class="assignee">
+      <synchro-user-avatar
+        [size]="ImageSizeEnum.ExtraSmall"
+        [customUser]="mapUser(task.createdBy!.split(' '), task.assigneeAvatar)"
+      ></synchro-user-avatar>
+      {{ task.createdBy | defaultValue }}
+    </div>
+
+    @if (task.tags) {
+    <synchro-tags
+      class="tags"
+      [tags]="task.tags"
+    ></synchro-tags>
+    }
+  </div>
+  <div class="actions">
+    <div class="actions-container">
+      <button
+        class="edit"
+        (click)="editTask(task!)"
+      >
+        <mat-icon
+          class="edit-icon"
+          [svgIcon]="'edit-pencil-icon'"
+        ></mat-icon>
+      </button>
+      <button
+        class="delete"
+        (click)="deleteTask(task.id!)"
+      >
+        <mat-icon
+          class="trash-icon"
+          [svgIcon]="'trash-icon'"
+        ></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
