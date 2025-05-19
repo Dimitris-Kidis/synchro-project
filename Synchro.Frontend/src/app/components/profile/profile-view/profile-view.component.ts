@@ -86,11 +86,11 @@ export class ProfileViewComponent {
   public toggleSecretVisibility(): void {
     this.isSecretVisible = !this.isSecretVisible;
 
-    if (this.isSecretVisible) {
-      setTimeout(() => {
-        this.isSecretVisible = false;
-      }, 5000);
-    }
+    // if (this.isSecretVisible) {
+    //   setTimeout(() => {
+    //     this.isSecretVisible = false;
+    //   }, 5000);
+    // }
   }
 
   public regenerateKey(): void {

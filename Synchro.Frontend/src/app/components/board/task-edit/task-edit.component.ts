@@ -9,17 +9,14 @@ import { User } from '../../../../models/user';
 import { WorkItemDto } from '../../../../models/work-item';
 import { WorkItemsService } from '../../../../services/work-items.service';
 import { PageSpinnerService } from '../../../common/components/page-spinner/page-spinner.service';
-import { CheckboxEditControlComponent } from '../../../common/controls/checkbox/checkbox-edit-control/checkbox-edit-control.component';
 import { ComboEditControlComponent } from '../../../common/controls/combo-edit-control/combo-edit-control.component';
 import { TextEditControlComponent } from '../../../common/controls/text-edit-control/text-edit-control.component';
 import { DisplayErrorHelper } from '../../../common/helpers/display-error.helper';
 import { ImageSizeEnum } from '../../../enums/image-size.enum';
 import { WorkItemTypeEnum } from '../../../enums/work-item-type.enum';
 import { DefaultValuePipe } from '../../../pipes/default-value.pipe';
-import { LinkListComponent } from '../../link-list/link-list.component';
 import { TagsComponent } from '../../tags/tags.component';
 import { EditorConfig } from '../../text-editor/editor.config';
-import { UploadImageComponent } from '../../upload-image/upload-image.component';
 import { UserAvatarComponent } from '../../user-avatar/user-avatar.component';
 import { ITaskEditConfig, getTaskEditConfig } from './task-edit.config';
 import { TaskEditQuillConfig } from './task-edit.quill';
@@ -32,11 +29,8 @@ import { ITaskEditSchema, getTaskEditSchema } from './task-edit.schema';
     FormsModule,
     TextEditControlComponent,
     ComboEditControlComponent,
-    UploadImageComponent,
-    CheckboxEditControlComponent,
     QuillModule,
     CommonModule,
-    LinkListComponent,
     CommonModule,
     NgClass,
     MatIconModule,
